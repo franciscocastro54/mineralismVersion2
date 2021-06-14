@@ -12,7 +12,7 @@ const Barra=()=>{
 
 
 
-return <div class="accordion " id="accordionExample">
+return <div class="accordion Barra" id="accordionExample">
 <div class="accordion-item">
   <h2 class="accordion-header" id="headingOne">
     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -34,7 +34,7 @@ return <div class="accordion " id="accordionExample">
   </h2>
   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
     <div class="accordion-body">
-      
+      {/*Aqui van los reportes */}
     </div>
   </div>
 </div>
