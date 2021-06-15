@@ -123,6 +123,7 @@ const ListaVectores = () => {
     }
 
     const updateVector = (nombre1, densidadP1, porcSolido1, ley1, caudalP1, tipo="") =>{
+        
         const newVector = vectores.map((vector)=>{
             if (vector.nombre===nombre1) {
                 return{...vector,
@@ -220,6 +221,41 @@ const ListaRecupLey=()=>{
         actualizarRecupLey([newRecupLey])
 
     }
+
+    const viewRecupLey = () =>{
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                    <tbody>
+                        <tr> 
+                            <th>Concentrado común</th>
+                            <th>{recupLey[0].concComun}</th>
+                        </tr>
+                        
+                        <tr> 
+                            <th>Alimentación</th>
+                            <th>{recupLey[0].alimentacion}</th>
+                        </tr>
+
+                        <tr> 
+                            <th>Rechazo</th>
+                            <th>{recupLey[0].rechazo}</th>
+                        </tr>
+
+                        <tr> 
+                            <th>Recuperación</th>
+                            <th>{recupLey[0].recuperacion}</th>
+                        </tr>
+
+                    </tbody>
+                </thead>
+            </table>
+        )
+    }
    
 }
 
@@ -241,6 +277,36 @@ const ListaRecupMasa=()=>{
 
         actualizarRecupMasa([newRecupMasa])
 
+    }
+
+    const viewRecupLey = () =>{
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>T/hr</th>
+                    </tr>
+                    <tbody>
+                        <tr> 
+                            <th>Concentrado común</th>
+                            <th>{recupMasa[0].concComun}</th>
+                        </tr>
+                        
+                        <tr> 
+                            <th>Alimentación</th>
+                            <th>{recupMasa[0].alimentacion}</th>
+                        </tr>
+
+                        <tr> 
+                            <th>Recuperación</th>
+                            <th>{recupMasa[0].recuperacion}</th>
+                        </tr>
+
+                    </tbody>
+                </thead>
+            </table>
+        )
     }
    
 }
@@ -276,7 +342,40 @@ const ListaError=()=>{
         actualizarError([newError])
         
         }
+        const viewError = () =>{
+            return(
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Diferencia (T/hr)</th>
+                            <th>Porcentaje de error</th>
+                        </tr>
+                        <tbody>
+                            <tr> 
+                                <th>Masa Pulpa</th>
+                                <th>{Error[0].masaPulpa.diferencia}</th>
+                                <th>{Error[0].masaPulpa.porcError}</th>
+                            </tr>
+                            
+                            <tr> 
+                                <th>Masa Sólido</th>
+                                <th>{Error[0].masaSolido.diferencia}</th>
+                                <th>{Error[0].masaSolido.porcError}</th>
+                            </tr>
 
+                            <tr> 
+                                <th>Masa Fino</th>
+                                <th>{Error[0].masaFino.diferencia}</th>
+                                <th>{Error[0].masaFino.porcError}</th>
+                            </tr>
+                            
+    
+                        </tbody>
+                    </thead>
+                </table>
+            )
+        }
     
 
 }
