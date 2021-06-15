@@ -3,7 +3,8 @@ import F_cargar_celda from '../context/F_cargar_celda';
 
 
 
-const Input_vector=({id,type})=>{
+const Input_vector=({f,id,type})=>{
+  /*
 const context=useContext(F_cargar_celda);
 const[nombre,setNombre]=useState('');
 const[densidad,setDensidad]=useState(0);
@@ -27,25 +28,56 @@ console.log(id,type,nombre)
 console.log('cargar---',nombre,densidad,solido,ley,caudal)
 }
 
-useEffect(context[1]=cargar,[])
+*/
 
 
 const Guardar=()=>{
-const nombre=   document.getElementById('inputNombre').value
-const densidad= document.getElementById('inputdDensidad').value
-const solido=   document.getElementById('inputSolido').value
-const ley=      document.getElementById('inputLey').value
-const caudal=   document.getElementById('inputCaudal').value
+ 
+const nombre=   document.getElementById('inputNombre'+type).value
+const densidad= document.getElementById('inputdDensidad'+type).value
+const solido=   document.getElementById('inputSolido'+type).value
+const ley=      document.getElementById('inputLey'+type).value
+const caudal=   document.getElementById('inputCaudal'+type).value
+console.log(id+type+nombre)
+if(id==undefined){
+ f[1]((list)=>[...list, nombre])
+  console.log(f)
+  sessionStorage.setItem(nombre+type+'Nombre',nombre);
+sessionStorage.setItem(nombre+type+'Densidad',densidad);
+sessionStorage.setItem(nombre+type+'Solido',solido);
+sessionStorage.setItem(nombre+type+'Ley',ley);
+sessionStorage.setItem(nombre+type+'Caudal',caudal);
+  }else if(id==nombre){
 sessionStorage.setItem(id+type+'Nombre',nombre);
 sessionStorage.setItem(id+type+'Densidad',densidad);
 sessionStorage.setItem(id+type+'Solido',solido);
 sessionStorage.setItem(id+type+'Ley',ley);
 sessionStorage.setItem(id+type+'Caudal',caudal);
-console.log(id,type,nombre)
+
+  }else{
+    f[1]((list)=>{
+const aux=[]
+for(let i=0;i<list.length;i++){
+
+if(list[i]!=id)  aux[i]=list[i]
+else aux[i]=nombre
+
+}
+
+
+return aux
+    })
+    sessionStorage.setItem(nombre+type+'Nombre',nombre);
+    sessionStorage.setItem(nombre+type+'Densidad',densidad);
+    sessionStorage.setItem(nombre+type+'Solido',solido);
+    sessionStorage.setItem(nombre+type+'Ley',ley);
+    sessionStorage.setItem(nombre+type+'Caudal',caudal);
+
+  }
 }
 return<>
 
-<div className="modal fade" id={"Modal"+id+type} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id={"Modal"+type} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -55,19 +87,19 @@ return<>
       <div className="modal-body">
        <div className={'container-xxl'}>
            <div className={'row'}>
-            <h4 className={'col-3'}>Nombre:</h4><input id={'inputNombre'}className={'col-7'} /><h4 className={'col-2'}></h4>
+            <h4 className={'col-3'}>Nombre:</h4><input id={'inputNombre'+type}className={'col-7'} /><h4 className={'col-2'}></h4>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Densidad</h4><input id={'inputdDensidad'}className={'col-7'} /><h4 className={'col-2'}>(T/m3)</h4>
+            <h4 className={'col-3'}>Densidad</h4><input id={'inputdDensidad'+type}className={'col-7'} /><h4 className={'col-2'}>(T/m3)</h4>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Solido</h4><input id={'inputSolido'}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
+            <h4 className={'col-3'}>Solido</h4><input id={'inputSolido'+type}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Ley</h4><input id={'inputLey'}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
+            <h4 className={'col-3'}>Ley</h4><input id={'inputLey'+type}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Caudal</h4><input id={'inputCaudal'}className={'col-7'} /><h4 className={'col-2'}>(m3/h)</h4>
+            <h4 className={'col-3'}>Caudal</h4><input id={'inputCaudal'+type}className={'col-7'} /><h4 className={'col-2'}>(m3/h)</h4>
            </div>
        </div>
       </div>
