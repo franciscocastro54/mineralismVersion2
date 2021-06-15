@@ -26,7 +26,6 @@ setVector(list)
 console.log(list+type+'Nombre')
 if(sessionStorage.getItem(list+type+'vector')!=null){
 const vector=   JSON.parse( sessionStorage.getItem(list+type+'vector'));
-console.log(vector)
 document.getElementById('inputNombre'+type).value=vector.nombre
 document.getElementById('inputdDensidad'+type).value=vector.densidad
 document.getElementById('inputSolido'+type).value=vector.porcSolido
