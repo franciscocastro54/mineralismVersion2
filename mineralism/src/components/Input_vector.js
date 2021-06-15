@@ -1,6 +1,7 @@
+import { metaProperty } from '@babel/types';
 import React,{useState,useEffect,useContext} from 'react';
 import F_cargar_celda from '../context/F_cargar_celda';
-
+import vector from '../data/vector';
 
 
 const Input_vector=({f,id,type})=>{
@@ -38,42 +39,24 @@ const densidad= document.getElementById('inputdDensidad'+type).value
 const solido=   document.getElementById('inputSolido'+type).value
 const ley=      document.getElementById('inputLey'+type).value
 const caudal=   document.getElementById('inputCaudal'+type).value
+const vectorg =vector(nombre,densidad,solido,ley,caudal,type)
 console.log(id+type+nombre)
 if(id==undefined){
  f[1]((list)=>[...list, nombre])
-  console.log(f)
-  sessionStorage.setItem(nombre+type+'Nombre',nombre);
-sessionStorage.setItem(nombre+type+'Densidad',densidad);
-sessionStorage.setItem(nombre+type+'Solido',solido);
-sessionStorage.setItem(nombre+type+'Ley',ley);
-sessionStorage.setItem(nombre+type+'Caudal',caudal);
-  }else if(id==nombre){
-sessionStorage.setItem(id+type+'Nombre',nombre);
-sessionStorage.setItem(id+type+'Densidad',densidad);
-sessionStorage.setItem(id+type+'Solido',solido);
-sessionStorage.setItem(id+type+'Ley',ley);
-sessionStorage.setItem(id+type+'Caudal',caudal);
 
-  }else{
+
+  }else if(id!=nombre){
     f[1]((list)=>{
 const aux=[]
 for(let i=0;i<list.length;i++){
 
 if(list[i]!=id)  aux[i]=list[i]
 else aux[i]=nombre
-
 }
-
-
 return aux
     })
-    sessionStorage.setItem(nombre+type+'Nombre',nombre);
-    sessionStorage.setItem(nombre+type+'Densidad',densidad);
-    sessionStorage.setItem(nombre+type+'Solido',solido);
-    sessionStorage.setItem(nombre+type+'Ley',ley);
-    sessionStorage.setItem(nombre+type+'Caudal',caudal);
-
   }
+  sessionStorage.setItem(nombre+type+'vector',JSON.stringify(vectorg));
 }
 return<>
 
