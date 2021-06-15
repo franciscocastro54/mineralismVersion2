@@ -1,6 +1,6 @@
 import React from 'react';
 import Barra from '../components/Barra_lateral';
-import Caja_negra from './Caja_negra';
+import Sistem_celda from './Sistema_celda';
 
 
 
@@ -15,9 +15,10 @@ return <div className={'container-xxl'}>
 <Barra/>
 </div>
 <div id={'Pantalla_central'}className={'col-10 sinpadd'}>
-<Caja_negra/>
+<Sistem_celda/>
 </div>
  </div>
+ 
 </div>
 }
 
