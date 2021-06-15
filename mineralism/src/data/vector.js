@@ -143,6 +143,45 @@ const ListaVectores = () => {
         agregarVector(newVector)
     }
 
+    const viewVectores = () =>{
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Densidad (T/m3)</th>
+                        <th>Porcentaje de sólido (%)</th>
+                        <th>Ley (%)</th>
+                        <th>Caudal (m3/hr)</th>
+                        <th>Masa pulpa (T/hr)</th>
+                        <th>Masa sólido (T/hr)</th>
+                        <th>Fino (T/hr)</th>
+                    </tr>
+                    <tbody>
+                        {
+                            vectores.map(
+                                (vector)=>{
+                                    <tr>
+                                        <td>{vector.nombre}</td>
+                                        <td>{vector.densidad}</td>
+                                        <td>{vector.porcSolido}</td>
+                                        <td>{vector.ley}</td>
+                                        <td>{vector.caudalP}</td>
+                                        <td>{vector.MPulpa}</td>
+                                        <td>{vector.MSolido}</td>
+                                        <td>{vector.Fino}</td>
+                                    </tr>
+                                }
+                            )
+                        }
+
+                    </tbody>
+                </thead>
+            </table>
+        )
+    }
+
+
 }
 
 const ListaRecupLey=()=>{
