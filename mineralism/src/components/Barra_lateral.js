@@ -21,7 +21,7 @@ return <div class="accordion Barra" id="accordionExample">
   </h2>
   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <div class="accordion-body">
-    <a onClick={()=>{console.log('hola mundo')}}><p>Caja Negra</p></a>
+    <a onClick={()=>{console.log('hola mundo')}}><p>Balance Polpaico</p></a>
     <a onClick={()=>{console.log('hola mundo')}}><p>Circuito Completo</p></a>
     </div>
   </div>
