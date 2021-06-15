@@ -7,7 +7,7 @@ import F_cargar_celda from '../context/F_cargar_celda';
 
 
 const Lista_flujos=({type='Alimentacion'})=>{
-    const context=useContext(F_cargar_celda);
+const context=useContext(F_cargar_celda);
 const Titulo=type;
 const [list,setList]=useState(['R1']);
 const [vector,setVector]=useState('prueba');
@@ -24,17 +24,14 @@ const openCelda=(list)=>{
 
 setVector(list)
 console.log(list+type+'Nombre')
-if(sessionStorage.getItem(list+type+'Nombre')!=null){
-const nombre=   sessionStorage.getItem(list+type+'Nombre')
-const densidad=  sessionStorage.getItem(list+type+'Densidad')
-const solido=    sessionStorage.getItem(list+type+'Solido')
-const ley=      sessionStorage.getItem(list+type+'Ley')
-const caudal=    sessionStorage.getItem(list+type+'Caudal')
-document.getElementById('inputNombre'+type).value=nombre
-document.getElementById('inputdDensidad'+type).value=densidad
-document.getElementById('inputSolido'+type).value=solido
-document.getElementById('inputLey'+type).value=ley
-document.getElementById('inputCaudal'+type).value=caudal}
+if(sessionStorage.getItem(list+type+'vector')!=null){
+const vector=   JSON.parse( sessionStorage.getItem(list+type+'vector'));
+console.log(vector)
+document.getElementById('inputNombre'+type).value=vector.nombre
+document.getElementById('inputdDensidad'+type).value=vector.densidad
+document.getElementById('inputSolido'+type).value=vector.porcSolido
+document.getElementById('inputLey'+type).value=vector.ley
+document.getElementById('inputCaudal'+type).value=vector.caudalP}
 else{
     document.getElementById('inputNombre'+type).value=''
 document.getElementById('inputdDensidad'+type).value=''
