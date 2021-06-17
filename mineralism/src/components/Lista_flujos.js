@@ -18,7 +18,6 @@ const addCelda=()=>{
     setList((list)=>[...list,'R2'])
     console.log(type+'Nombre')
 }*/
-const inputRef = useRef(null)
 const openCelda=(list)=>{
 
 
@@ -32,7 +31,7 @@ document.getElementById('inputSolido'+type).value=vector.porcSolido
 document.getElementById('inputLey'+type).value=vector.ley
 document.getElementById('inputCaudal'+type).value=vector.caudalP}
 else{
-    document.getElementById('inputNombre'+type).value=''
+document.getElementById('inputNombre'+type).value=''
 document.getElementById('inputdDensidad'+type).value=''
 document.getElementById('inputSolido'+type).value=''
 document.getElementById('inputLey'+type).value=''
@@ -57,7 +56,6 @@ data-bs-target={"#Modal"+type}  onClick={()=>{/*addCelda()*/;openCelda()}}>+</bu
 data-bs-target={"#Modal"+type} onClick={()=>openCelda(list)}>{list}</button></li>}
     )}
     </ul>
-    
     </div></div>
 <Input_vector f={[list,setList]} id={vector} type={Titulo}/>
 

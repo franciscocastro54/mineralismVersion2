@@ -15,9 +15,9 @@ const datavector=[vector,setVector]
 return <div className={'container-xxl'}>
     <F_cargar_celda.Provider value={datavector}>
 <div className={'row'}>
-<div className={'col sinpadd'}><Lista_flujos type={'Alimentación(F)'}/></div>
-<div className={'col sinpadd'}><Lista_flujos type={'Cola(T)'}/></div>
-<div className={'col sinpadd'}><Lista_flujos type={'Concentrado(C)'}/></div>
+<div className={'col sinpadding'}><Lista_flujos type={'Alimentación(F)'}/></div>
+<div className={'col sinpadding'}><Lista_flujos type={'Cola(T)'}/></div>
+<div className={'col sinpadding'}><Lista_flujos type={'Concentrado(C)'}/></div>
 </div>
 <div className={'row'}>
 <div className={'col-8 sinpadd'}>
