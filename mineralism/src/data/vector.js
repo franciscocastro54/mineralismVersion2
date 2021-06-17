@@ -122,20 +122,28 @@ const ListaVectores = () => {
 
     }
 
-    const updateVector = (nombre1, densidadP1, porcSolido1, ley1, caudalP1, tipo="") =>{
+    const updateVector = (oldName , newName, densidadP1, porcSolido1, ley1, caudalP1, tipo="") =>{
         
         const newVector = vectores.map((vector)=>{
-            if (vector.nombre===nombre1) {
-                return{...vector,
-                    nombre:nombre1,            
-                    densidad:densidadP1,
-                    porcSolido:porcSolido1,
-                    ley:ley1,
-                    caudalP:caudalP1,
-                    MPulpa:MPulpa1,
-                    MSolido:MSolido1,
-                    Fino:Fino1,
-                    tipo:tipo
+            if (vector.nombre===oldName) {
+                const calMPulpa = ()=>(caudalP1*densidadP1)    
+                const calMSolido = () => (calMPulpa()*porcSolido1/100)
+                const calFino = () => (ley1*calMSolido()/100) 
+
+                const MPulpa1= calMPulpa();
+                const MSolido1= calMSolido();
+                const Fino1= calFino();
+
+                vector={
+                        nombre:newName,            
+                        densidad:densidadP1,
+                        porcSolido:porcSolido1,
+                        ley:ley1,
+                        caudalP:caudalP1,
+                        MPulpa:MPulpa1,
+                        MSolido:MSolido1,
+                        Fino:Fino1,
+                        tipo:tipo
                 }
             }
             return vector
