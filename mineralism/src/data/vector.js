@@ -158,49 +158,89 @@ const ListaVectores = () => {
         return (newVector)
     }
 
-    return { vectores, addVector, removeVector, updateVector }
+    const findName = (name) => { 
+        const listado = lista.reduce((acc,el)=>( { ...acc,[el.nombre]:el,} ),{})
+        return listado[name]=true ?? false
+    }
+
+    const view = () =>{
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Densidad (T/m3)</th>
+                        <th>Porcentaje de sólido (%)</th>
+                        <th>Ley (%)</th>
+                        <th>Caudal (m3/hr)</th>
+                        <th>Masa pulpa (T/hr)</th>
+                        <th>Masa sólido (T/hr)</th>
+                        <th>Fino (T/hr)</th>
+                    </tr>
+                    <tbody>
+                        {
+                            vectores.map(
+                                (vector)=>{
+                                    <tr>
+                                        <td>{vector.nombre}</td>
+                                        <td>{vector.densidad}</td>
+                                        <td>{vector.porcSolido}</td>
+                                        <td>{vector.ley}</td>
+                                        <td>{vector.caudalP}</td>
+                                        <td>{vector.MPulpa}</td>
+                                        <td>{vector.MSolido}</td>
+                                        <td>{vector.Fino}</td>
+                                    </tr>
+                                }
+                            )
+                        }
+
+                    </tbody>
+                </thead>
+            </table>
+        )
+    }
+
+    return { vectores, addVector, removeVector, updateVector,findName , view }
 
 }
 
-const ListaRecupLey = () => {
+const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
+  
 
-    const [recupLey, actualizarRecupLey] = useState([])
+    let concComun = 0
+    for (let i = 0; i < listaVConcentrado.length; i++) {
+        concComun += (listaVConcentrado[i].MPulpa) * (listaVConcentrado[i].ley)
+    }
+    concComun /= sumaParam(listaVConcentrado, "MPulpa")
 
-    const updateRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
+    let alimentacion = 0
+    for (let i = 0; i < listaVAlim.length; i++) {
+        alimentacion += (listaVAlim[i].MPulpa) * (listaVAlim[i].ley)
+    }
+    alimentacion /= sumaParam(listaVAlim, "MPulpa")
 
-        let concComun = 0
-        for (let i = 0; i < listaVConcentrado.length; i++) {
-            concComun += (listaVConcentrado[i].MPulpa) * (listaVConcentrado[i].ley)
-        }
-        concComun /= sumaParam(listaVConcentrado, "MPulpa")
+    let rechazo = 0
+    for (let i = 0; i < listaVRelave.length; i++) {
+        rechazo += (listaVRelave[i].MPulpa) * (listaVRelave[i].ley)
+    }
+    rechazo /= sumaParam(listaVRelave, "MPulpa")
 
-        let alimentacion = 0
-        for (let i = 0; i < listaVAlim.length; i++) {
-            alimentacion += (listaVAlim[i].MPulpa) * (listaVAlim[i].ley)
-        }
-        alimentacion /= sumaParam(listaVAlim, "MPulpa")
+    const recuperacion = ((alimentacion - rechazo) / (concComun - rechazo)) * 100
 
-        let rechazo = 0
-        for (let i = 0; i < listaVRelave.length; i++) {
-            rechazo += (listaVRelave[i].MPulpa) * (listaVRelave[i].ley)
-        }
-        rechazo /= sumaParam(listaVRelave, "MPulpa")
-
-        const recuperacion = ((alimentacion - rechazo) / (concComun - rechazo)) * 100
-
-        const newRecupLey = {
-            concComun: concComun,
-            alimentacion: alimentacion,
-            rechazo: rechazo,
-            recuperacion: recuperacion
-        }
-
-        actualizarRecupLey([newRecupLey])
-
+    const recupLey = {
+        concComun: concComun,
+        alimentacion: alimentacion,
+        rechazo: rechazo,
+        recuperacion: recuperacion
     }
 
-    const viewRecupLey = () => {
+    
+
+    const view = () => {
+        
         return (
+
             <table>
                 <thead>
                     <tr>
@@ -210,22 +250,22 @@ const ListaRecupLey = () => {
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
-                            <th>{recupLey[0].concComun}</th>
+                            <th>{recupLey.concComun}</th>
                         </tr>
 
                         <tr>
                             <th>Alimentación</th>
-                            <th>{recupLey[0].alimentacion}</th>
+                            <th>{recupLey.alimentacion}</th>
                         </tr>
 
                         <tr>
                             <th>Rechazo</th>
-                            <th>{recupLey[0].rechazo}</th>
+                            <th>{recupLey.rechazo}</th>
                         </tr>
 
                         <tr>
                             <th>Recuperación</th>
-                            <th>{recupLey[0].recuperacion}</th>
+                            <th>{recupLey.recuperacion}</th>
                         </tr>
 
                     </tbody>
@@ -233,31 +273,26 @@ const ListaRecupLey = () => {
             </table>
         )
     }
+    return {view, recupLey}
 
 }
 
-const ListaRecupMasa = () => {
+const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
 
-    const [recupMasa, actualizarRecupMasa] = useState([])
+    const concComun = sumaParam(listaVConcentrado, 'MSolido')
+    const alimentacion = sumaParam(listaVAlim, 'MSolido')
+    const recuperacion = (concComun / alimentacion) * 100
 
-    const updateRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
-
-
-        const concComun = sumaParam(listaVConcentrado, 'MSolido')
-        const alimentacion = sumaParam(listaVAlim, 'MSolido')
-        const recuperacion = (concComun / alimentacion) * 100
-
-        const newRecupMasa = {
-            concComun: concComun,
-            alimentacion: alimentacion,
-            recuperacion: recuperacion
-        }
-
-        actualizarRecupMasa([newRecupMasa])
-
+    const recupMasa = {
+        concComun: concComun,
+        alimentacion: alimentacion,
+        recuperacion: recuperacion
     }
 
-    const viewRecupLey = () => {
+
+
+
+    const view = () => {
         return (
             <table>
                 <thead>
@@ -268,17 +303,17 @@ const ListaRecupMasa = () => {
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
-                            <th>{recupMasa[0].concComun}</th>
+                            <th>{recupMasa.concComun}</th>
                         </tr>
 
                         <tr>
                             <th>Alimentación</th>
-                            <th>{recupMasa[0].alimentacion}</th>
+                            <th>{recupMasa.alimentacion}</th>
                         </tr>
 
                         <tr>
                             <th>Recuperación</th>
-                            <th>{recupMasa[0].recuperacion}</th>
+                            <th>{recupMasa.recuperacion}</th>
                         </tr>
 
                     </tbody>
@@ -286,42 +321,40 @@ const ListaRecupMasa = () => {
             </table>
         )
     }
-
+    return {view,recupMasa}
 }
 
-const ListaError = () => {
+const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
 
-    const [Error, actualizarError] = useState([])
 
-    const updateError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
 
-        const difPulpa = sumaParam(listaVAlim, 'MPulpa') - (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))
-        const difSolido = sumaParam(listaVAlim, 'MSolido') - (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))
-        const difFino = sumaParam(listaVAlim, 'Fino') - (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))
+    const difPulpa = sumaParam(listaVAlim, 'MPulpa') - (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))
+    const difSolido = sumaParam(listaVAlim, 'MSolido') - (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))
+    const difFino = sumaParam(listaVAlim, 'Fino') - (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))
 
-        const porcPulpa = (sumaParam(listaVAlim, 'MPulpa') / (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))) * 100
-        const porcSolido = (sumaParam(listaVAlim, 'MSolido') / (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))) * 100
-        const porcFino = (sumaParam(listaVAlim, 'Fino') / (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))) * 100
+    const porcPulpa = (sumaParam(listaVAlim, 'MPulpa') / (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))) * 100
+    const porcSolido = (sumaParam(listaVAlim, 'MSolido') / (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))) * 100
+    const porcFino = (sumaParam(listaVAlim, 'Fino') / (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))) * 100
 
-        const newError = {
-            masaPulpa: {
-                diferencia: difPulpa,
-                porcError: porcPulpa
-            }
-            , masaSolido: {
-                diferencia: difSolido,
-                porcError: porcSolido
-            }
-            , masaFino: {
-                diferencia: difFino,
-                porcError: porcFino
-            }
+    const Error = {
+        masaPulpa: {
+            diferencia: difPulpa,
+            porcError: porcPulpa
         }
-
-        actualizarError([newError])
-
+        , masaSolido: {
+            diferencia: difSolido,
+            porcError: porcSolido
+        }
+        , masaFino: {
+            diferencia: difFino,
+            porcError: porcFino
+        }
     }
-    const viewError = () => {
+
+        
+
+    
+    const view = () => {
         return (
             <table>
                 <thead>
@@ -333,20 +366,20 @@ const ListaError = () => {
                     <tbody>
                         <tr>
                             <th>Masa Pulpa</th>
-                            <th>{Error[0].masaPulpa.diferencia}</th>
-                            <th>{Error[0].masaPulpa.porcError}</th>
+                            <th>{Error.masaPulpa.diferencia}</th>
+                            <th>{Error.masaPulpa.porcError}</th>
                         </tr>
 
                         <tr>
                             <th>Masa Sólido</th>
-                            <th>{Error[0].masaSolido.diferencia}</th>
-                            <th>{Error[0].masaSolido.porcError}</th>
+                            <th>{Error.masaSolido.diferencia}</th>
+                            <th>{Error.masaSolido.porcError}</th>
                         </tr>
 
                         <tr>
                             <th>Masa Fino</th>
-                            <th>{Error[0].masaFino.diferencia}</th>
-                            <th>{Error[0].masaFino.porcError}</th>
+                            <th>{Error.masaFino.diferencia}</th>
+                            <th>{Error.masaFino.porcError}</th>
                         </tr>
 
 
@@ -355,7 +388,7 @@ const ListaError = () => {
             </table>
         )
     }
-
+    return {view, Error}
 
 }
 
