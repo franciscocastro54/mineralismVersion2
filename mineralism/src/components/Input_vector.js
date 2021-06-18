@@ -1,7 +1,7 @@
 import { metaProperty } from '@babel/types';
 import React,{useState,useEffect,useContext} from 'react';
 import F_cargar_celda from '../context/F_cargar_celda';
-import vector from '../data/vector';
+import vector,{ListaVectores} from '../data/vector';
 
 
 const Input_vector=({f,id,type})=>{
@@ -56,8 +56,17 @@ else aux[i]=nombre
 return aux
     })
   }
+ // {vectores,addVector,removeVector,updateVector}
+  const list= ListaVectores()
+list.vectores=  list.addVector("nombre",1,1,1,1,"")
+list.vectores=  list.addVector("nombre2",1,1,1,1,"")
+list.vectores=list.removeVector('nombre');
+list.vectores=list.updateVector('nombre2','nombre3',1,1,1,1,"a");
+console.log(list.vectores)
+
   sessionStorage.setItem(nombre+type+'vector',JSON.stringify(vectorg));
 }
+console.log("Modal"+type)
 return<>
 
 <div className="modal fade" id={"Modal"+type} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
