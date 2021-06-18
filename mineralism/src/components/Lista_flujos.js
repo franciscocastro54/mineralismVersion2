@@ -22,7 +22,7 @@ const Lista_flujos = ({ type = 'Alimentacion' }) => {
 
 
         setVector(list)
-        console.log(list + type + 'Nombre')
+      
         if (sessionStorage.getItem(list + type + 'vector') != null) {
             const vector = JSON.parse(sessionStorage.getItem(list + type + 'vector'));
             document.getElementById('inputNombre' + type).value = vector.nombre

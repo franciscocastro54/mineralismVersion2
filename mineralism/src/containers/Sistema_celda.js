@@ -15,9 +15,9 @@ const Caja_negra = () => {
     return <div className={'container-xxl'}>
         <F_cargar_celda.Provider value={datavector}>
             <div className={'row'}>
-                <div className={'col sinpadding'}><Lista_flujos type={'Alimentación'} /></div>
-                <div className={'col sinpadding'}><Lista_flujos type={'Cola'} /></div>
-                <div className={'col sinpadding'}><Lista_flujos type={'Concentrado'} /></div>
+                <div className={'col sinpadding'}><Lista_flujos type={'Alimentación_F'} /></div>
+                <div className={'col sinpadding'}><Lista_flujos type={'Cola_T'} /></div>
+                <div className={'col sinpadding'}><Lista_flujos type={'Concentrado_C'} /></div>
             </div>
             <div className={'row'}>
                 <div className={'col-8 sinpadd'}>

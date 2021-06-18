@@ -40,10 +40,16 @@ const solido=   document.getElementById('inputSolido'+type).value
 const ley=      document.getElementById('inputLey'+type).value
 const caudal=   document.getElementById('inputCaudal'+type).value
 const vectorg =vector(nombre,densidad,solido,ley,caudal,type)
-console.log(id+type+nombre)
+const list= ListaVectores()
+console.log(nombre,'   ',id)
+if(sessionStorage.getItem('listaVectores'+type)!=null)
+{list.vectores=sessionStorage.getItem('listaVectores'+type)
+console.log(sessionStorage.getItem('listaVectores'+type))
+console.log(list.vectores)
+}
 if(id==undefined){
  f[1]((list)=>[...list, nombre])
-
+list.vectores=list.addVector(nombre,densidad,solido,ley,caudal,type)
 
   }else if(id!=nombre){
     f[1]((list)=>{
@@ -55,18 +61,20 @@ else aux[i]=nombre
 }
 return aux
     })
+
+list.vectores=  list.updateVector(id,nombre,densidad,solido,ley,caudal,type);
+
+  }else{
+list.vectores=list.addVector(nombre,densidad,solido,ley,caudal,type)
+
   }
  // {vectores,addVector,removeVector,updateVector}
-  const list= ListaVectores()
-list.vectores=  list.addVector("nombre",1,1,1,1,"")
-list.vectores=  list.addVector("nombre2",1,1,1,1,"")
-list.vectores=list.removeVector('nombre');
-list.vectores=list.updateVector('nombre2','nombre3',1,1,1,1,"a");
-console.log(list.vectores)
 
-  sessionStorage.setItem(nombre+type+'vector',JSON.stringify(vectorg));
+
+console.log(list.vectores)
+  sessionStorage.setItem('listaVectores'+type,JSON.stringify(list.vectores));
 }
-console.log("Modal"+type)
+
 return<>
 
 <div className="modal fade" id={"Modal"+type} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
