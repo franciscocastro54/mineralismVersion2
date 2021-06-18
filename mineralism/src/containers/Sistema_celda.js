@@ -21,10 +21,10 @@ const Caja_negra = () => {
             </div>
             <div className={'row'}>
                 <div className={'col-8 sinpadd'}>
-                    <TableVector />
+                <Tabla_celda types={['Alimentación_F','Cola_T','Concentrado_C']}/>
                 </div>
                 <div className={'col-4 sinpadd'}>
-                    <Tabla_diferencia />
+                 
                 </div>
             </div>
             <div id={'info_vector'}></div>

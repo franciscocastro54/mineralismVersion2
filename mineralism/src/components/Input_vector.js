@@ -41,17 +41,20 @@ const ley=      document.getElementById('inputLey'+type).value
 const caudal=   document.getElementById('inputCaudal'+type).value
 const vectorg =vector(nombre,densidad,solido,ley,caudal,type)
 const list= ListaVectores()
-console.log(nombre,'   ',id)
-if(sessionStorage.getItem('listaVectores'+type)!=null)
-{list.vectores=sessionStorage.getItem('listaVectores'+type)
-console.log(sessionStorage.getItem('listaVectores'+type))
+
+if(sessionStorage.getItem('listaVectores'+type)!=null){
+
+list.vectores=list.updateList(JSON.parse(sessionStorage.getItem('listaVectores'+type)))
+
 console.log(list.vectores)
 }
+console.log(nombre,'   ',id)
+
 if(id==undefined){
  f[1]((list)=>[...list, nombre])
-list.vectores=list.addVector(nombre,densidad,solido,ley,caudal,type)
+ list.vectores=list.addVector(nombre,densidad,solido,ley,caudal,type)
 
-  }else if(id!=nombre){
+  }else {
     f[1]((list)=>{
 const aux=[]
 for(let i=0;i<list.length;i++){
@@ -61,11 +64,7 @@ else aux[i]=nombre
 }
 return aux
     })
-
-list.vectores=  list.updateVector(id,nombre,densidad,solido,ley,caudal,type);
-
-  }else{
-list.vectores=list.addVector(nombre,densidad,solido,ley,caudal,type)
+list.vectores=list.updateVector(id,nombre,densidad,solido,ley,caudal,type)
 
   }
  // {vectores,addVector,removeVector,updateVector}

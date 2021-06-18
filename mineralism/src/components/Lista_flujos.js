@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import Input_vector from './Input_vector';
 import F_cargar_celda from '../context/F_cargar_celda';
+import { findVector,ListaVectores } from '../data/vector';
 
 
 
@@ -9,7 +10,7 @@ import F_cargar_celda from '../context/F_cargar_celda';
 const Lista_flujos = ({ type = 'Alimentacion' }) => {
     const context = useContext(F_cargar_celda);
     const Titulo = type;
-    const [list, setList] = useState(['R1']);
+    const [list, setList] = useState([]);
     const [vector, setVector] = useState('prueba');
     /*
 
@@ -23,15 +24,22 @@ const Lista_flujos = ({ type = 'Alimentacion' }) => {
 
         setVector(list)
       
-        if (sessionStorage.getItem(list + type + 'vector') != null) {
-            const vector = JSON.parse(sessionStorage.getItem(list + type + 'vector'));
+        if (sessionStorage.getItem('listaVectores'+type) != null) {
+            const listt= ListaVectores()
+            listt.updateList(JSON.parse(sessionStorage.getItem('listaVectores'+type)))
+         if(listt.findName(list)){
+            const vector=listt.findVector(list)
             document.getElementById('inputNombre' + type).value = vector.nombre
             document.getElementById('inputdDensidad' + type).value = vector.densidad
             document.getElementById('inputSolido' + type).value = vector.porcSolido
             document.getElementById('inputLey' + type).value = vector.ley
             document.getElementById('inputCaudal' + type).value = vector.caudalP
-        }
-        else {
+        }else{  document.getElementById('inputNombre' + type).value = ''
+        document.getElementById('inputdDensidad' + type).value = ''
+        document.getElementById('inputSolido' + type).value = ''
+        document.getElementById('inputLey' + type).value = ''
+        document.getElementById('inputCaudal' + type).value = ''}
+    }else {
             document.getElementById('inputNombre' + type).value = ''
             document.getElementById('inputdDensidad' + type).value = ''
             document.getElementById('inputSolido' + type).value = ''

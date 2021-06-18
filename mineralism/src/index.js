@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Main from './containers/Main';
-
+sessionStorage.clear()
 ReactDOM.render(
   <Main/>,
   document.getElementById('root')

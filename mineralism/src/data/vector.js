@@ -77,9 +77,10 @@ function RecupLey(listaVAlim, listaVRelave, listaVConcentrado) {
     }
 }
 
-function findVector(id, listado) {
-    const lista = listado.filter(vector => vector.tipo == id)
-    return lista
+const findVector = (name, lista) => {
+    const listado = lista.reduce((acc, el) => ({ ...acc, [el.nombre]: el, }), {})
+    return listado[name]
+
 }
 
 
@@ -94,6 +95,12 @@ const sumaParam = (lista, param) => {
 const ListaVectores = () => {
 
     let vectores = []
+
+    const updateList = (list) => {
+
+        vectores = list
+        return vectores
+    }
 
     const addVector = (nombre1, densidadP1, porcSolido1, ley1, caudalP1, tipo = "") => {
 
@@ -117,7 +124,7 @@ const ListaVectores = () => {
             tipo: tipo
         }
         vectores = ([...vectores, newVector])
-        console.log(vectores)
+
         return vectores;
     }
 
@@ -158,12 +165,13 @@ const ListaVectores = () => {
         return (newVector)
     }
 
-    const findName = (name) => { 
-        const listado = lista.reduce((acc,el)=>( { ...acc,[el.nombre]:el,} ),{})
-        return listado[name]=true ?? false
+    const findName = (name) => {
+        const listado = vectores.reduce((acc, el) => ({ ...acc, [el.nombre]: el, }), {})
+        const found = listado[name] ? true : false
+        return found
     }
 
-    const view = () =>{
+    const view = (lista) =>{
         return(
             <table>
                 <thead>
@@ -177,11 +185,12 @@ const ListaVectores = () => {
                         <th>Masa sólido (T/hr)</th>
                         <th>Fino (T/hr)</th>
                     </tr>
+                    </thead>
                     <tbody>
                         {
-                            vectores.map(
+                            lista.map(
                                 (vector)=>{
-                                    <tr>
+                                 return   <tr>
                                         <td>{vector.nombre}</td>
                                         <td>{vector.densidad}</td>
                                         <td>{vector.porcSolido}</td>
@@ -196,17 +205,21 @@ const ListaVectores = () => {
                         }
 
                     </tbody>
-                </thead>
+                
             </table>
         )
     }
+    const findVector = (name) => {
+        const listado = vectores.reduce((acc, el) => ({ ...acc, [el.nombre]: el, }), {})
+        return listado[name]
 
-    return { vectores, addVector, removeVector, updateVector,findName , view }
+    }
+    return { vectores, addVector, removeVector, updateVector, findName, view, updateList, findVector }
 
 }
 
 const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
-  
+
 
     let concComun = 0
     for (let i = 0; i < listaVConcentrado.length; i++) {
@@ -235,10 +248,10 @@ const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
         recuperacion: recuperacion
     }
 
-    
+
 
     const view = () => {
-        
+
         return (
 
             <table>
@@ -273,7 +286,7 @@ const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
             </table>
         )
     }
-    return {view, recupLey}
+    return { view, recupLey }
 
 }
 
@@ -282,7 +295,6 @@ const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
     const concComun = sumaParam(listaVConcentrado, 'MSolido')
     const alimentacion = sumaParam(listaVAlim, 'MSolido')
     const recuperacion = (concComun / alimentacion) * 100
-
     const recupMasa = {
         concComun: concComun,
         alimentacion: alimentacion,
@@ -321,7 +333,7 @@ const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
             </table>
         )
     }
-    return {view,recupMasa}
+    return { view, recupMasa }
 }
 
 const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
@@ -351,9 +363,9 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
         }
     }
 
-        
 
-    
+
+
     const view = () => {
         return (
             <table>
@@ -388,7 +400,7 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
             </table>
         )
     }
-    return {view, Error}
+    return { view, Error }
 
 }
 
@@ -403,5 +415,6 @@ export {
     ListaVectores,
     ListaRecupLey,
     ListaRecupMasa,
-    ListaError
+    ListaError,
+    findVector
 };

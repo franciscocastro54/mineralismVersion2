@@ -7,7 +7,7 @@ import Sistem_celda from './Sistema_celda';
 
 const Main=()=>{
 
-
+ 
 return <div className={'container-xxl'}>
 <div className={'row'}>
    
