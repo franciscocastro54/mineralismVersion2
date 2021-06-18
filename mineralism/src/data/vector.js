@@ -265,22 +265,22 @@ const ListaRecupLey = (listaVAlim, listaVRelave, listaVConcentrado) => {
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
-                            <th>{recupLey.concComun}</th>
+                            <th>{Truncado(recupLey.concComun)}</th>
                         </tr>
 
                         <tr>
                             <th>Alimentación</th>
-                            <th>{recupLey.alimentacion}</th>
+                            <th>{Truncado(recupLey.alimentacion)}</th>
                         </tr>
 
                         <tr>
                             <th>Rechazo</th>
-                            <th>{recupLey.rechazo}</th>
+                            <th>{Truncado(recupLey.rechazo)}</th>
                         </tr>
 
                         <tr>
                             <th>Recuperación</th>
-                            <th>{recupLey.recuperacion}</th>
+                            <th>{Truncado(recupLey.recuperacion)}</th>
                         </tr>
 
                     </tbody>
@@ -318,17 +318,17 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
-                            <th>{recupMasa.concComun}</th>
+                            <th>{Truncado(recupMasa.concComun)}</th>
                         </tr>
 
                         <tr>
                             <th>Alimentación</th>
-                            <th>{recupMasa.alimentacion}</th>
+                            <th>{Truncado(recupMasa.alimentacion)}</th>
                         </tr>
 
                         <tr>
                             <th>Recuperación</th>
-                            <th>{recupMasa.recuperacion}</th>
+                            <th>{Truncado(recupMasa.recuperacion)}</th>
                         </tr>
 
                     </tbody>
@@ -339,7 +339,7 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
     return { view, recupMasa }
 }
 
-const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
+const ListaError = (listaVAlim, listaVRelave, listaVConcentrado) => {
 
 
 
@@ -347,10 +347,9 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
     const difSolido = sumaParam(listaVAlim, 'MSolido') - (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))
     const difFino = sumaParam(listaVAlim, 'Fino') - (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))
 
-    const porcPulpa = (sumaParam(listaVAlim, 'MPulpa') / (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))) * 100
-    const porcSolido = (sumaParam(listaVAlim, 'MSolido') / (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))) * 100
-    const porcFino = (sumaParam(listaVAlim, 'Fino') / (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))) * 100
-
+    const porcPulpa = (difPulpa / (sumaParam(listaVConcentrado, 'MPulpa') + sumaParam(listaVRelave, 'MPulpa'))) * 100
+    const porcSolido = (difSolido / (sumaParam(listaVConcentrado, 'MSolido') + sumaParam(listaVRelave, 'MSolido'))) * 100
+    const porcFino = (difFino / (sumaParam(listaVConcentrado, 'Fino') + sumaParam(listaVRelave, 'Fino'))) * 100
     const Error = {
         masaPulpa: {
             diferencia: difPulpa,
@@ -367,40 +366,44 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
     }
 
 
+
+
+    const view = () => {
         return (
-            <table>
+            <table className={'table'}>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Diferencia (T/hr)</th>
                         <th>Porcentaje de error</th>
                     </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <th>Masa Pulpa</th>
-                            <th>{Error.masaPulpa.diferencia}</th>
-                            <th>{Error.masaPulpa.porcError}</th>
+                            <th>{Truncado(Error.masaPulpa.diferencia)}</th>
+                            <th>{Truncado(Error.masaPulpa.porcError)}</th>
                         </tr>
 
                         <tr>
                             <th>Masa Sólido</th>
-                            <th>{Error.masaSolido.diferencia}</th>
-                            <th>{Error.masaSolido.porcError}</th>
+                            <th>{Truncado(Error.masaSolido.diferencia)}</th>
+                            <th>{Truncado(Error.masaSolido.porcError)}</th>
                         </tr>
 
                         <tr>
                             <th>Masa Fino</th>
-                            <th>{Error.masaFino.diferencia}</th>
-                            <th>{Error.masaFino.porcError}</th>
+                            <th>{Truncado(Error.masaFino.diferencia)}</th>
+                            <th>{Truncado(Error.masaFino.porcError)}</th>
                         </tr>
 
 
                     </tbody>
-                </thead>
+              
             </table>
         )
-    
-    
+    }
+    return { view, Error }
 
 }
 
