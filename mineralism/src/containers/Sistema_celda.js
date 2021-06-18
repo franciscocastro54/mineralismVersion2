@@ -20,12 +20,10 @@ const Caja_negra = () => {
                 <div className={'col sinpadding'}><Lista_flujos type={'Concentrado_C'} /></div>
             </div>
             <div className={'row'}>
-                <div className={'col-8 sinpadd'}>
+                <div className={'col sinpadd'}>
                 <Tabla_celda types={['Alimentación_F','Cola_T','Concentrado_C']}/>
                 </div>
-                <div className={'col-4 sinpadd'}>
-                 
-                </div>
+               
             </div>
             <div id={'info_vector'}></div>
         </F_cargar_celda.Provider>

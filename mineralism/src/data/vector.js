@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Truncado from './Truncado';
 //v1
 function Vector(nombre1 = "nn", densidadP1 = 0, porcSolido1 = 0, ley1 = 0, caudalP1 = 0, tipo = "") {
 
@@ -173,7 +174,7 @@ const ListaVectores = () => {
 
     const view = (lista) =>{
         return(
-            <table>
+            <table className={'table'}>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -196,9 +197,9 @@ const ListaVectores = () => {
                                         <td>{vector.porcSolido}</td>
                                         <td>{vector.ley}</td>
                                         <td>{vector.caudalP}</td>
-                                        <td>{vector.MPulpa}</td>
-                                        <td>{vector.MSolido}</td>
-                                        <td>{vector.Fino}</td>
+                                        <td>{Truncado(vector.MPulpa)}</td>
+                                        <td>{Truncado(vector.MSolido)}</td>
+                                        <td>{Truncado(vector.Fino)}</td>
                                     </tr>
                                 }
                             )
@@ -218,7 +219,7 @@ const ListaVectores = () => {
 
 }
 
-const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
+const ListaRecupLey = (listaVAlim, listaVRelave, listaVConcentrado) => {
 
 
     let concComun = 0
@@ -254,12 +255,13 @@ const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
 
         return (
 
-            <table>
+            <table className={'table'}>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Porcentaje</th>
                     </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
@@ -282,7 +284,7 @@ const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
                         </tr>
 
                     </tbody>
-                </thead>
+               
             </table>
         )
     }
@@ -290,7 +292,7 @@ const ListaRecupLey = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
 
 }
 
-const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
+const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
 
     const concComun = sumaParam(listaVConcentrado, 'MSolido')
     const alimentacion = sumaParam(listaVAlim, 'MSolido')
@@ -306,12 +308,13 @@ const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
 
     const view = () => {
         return (
-            <table>
+            <table className={'table'}>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>T/hr</th>
                     </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <th>Concentrado común</th>
@@ -329,7 +332,7 @@ const ListaRecupMasa = ([listaVAlim], [listaVConcentrado]) => {
                         </tr>
 
                     </tbody>
-                </thead>
+               
             </table>
         )
     }
@@ -364,9 +367,6 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
     }
 
 
-
-
-    const view = () => {
         return (
             <table>
                 <thead>
@@ -399,8 +399,8 @@ const ListaError = ([listaVAlim], [listaVRelave], [listaVConcentrado]) => {
                 </thead>
             </table>
         )
-    }
-    return { view, Error }
+    
+    
 
 }
 
