@@ -73,6 +73,33 @@ list.vectores=list.updateVector(id,nombre,densidad,solido,ley,caudal,type)
 console.log(list.vectores)
   sessionStorage.setItem('listaVectores'+type,JSON.stringify(list.vectores));
 }
+const remove =()=>{
+
+  const list= ListaVectores()
+
+  if(sessionStorage.getItem('listaVectores'+type)!=null){
+  
+    f[1]((list)=>{
+  
+      const newList = list.filter((vector) => vector != id)
+    
+      return (newList)
+      
+          })
+
+  list.vectores=list.updateList(JSON.parse(sessionStorage.getItem('listaVectores'+type)))
+  
+  console.log(list.vectores)
+
+
+  list.vectores=list.removeVector(id);
+  sessionStorage.setItem('listaVectores'+type,JSON.stringify(list.vectores));
+  }
+
+
+
+
+}
 
 return<>
 
@@ -103,6 +130,7 @@ return<>
        </div>
       </div>
       <div className="modal-footer">
+      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={remove}>Eliminar</button>
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Guardar}>Save changes</button>
       </div>
