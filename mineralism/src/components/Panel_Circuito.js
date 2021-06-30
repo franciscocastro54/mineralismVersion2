@@ -64,7 +64,9 @@ const id=getId();
         break;
                                 
       default:
-        label=<><button data-bs-toggle="modal" data-bs-target="#Input_List_C">X</button><strong>{type}</strong></> 
+        label=<><button data-bs-toggle="modal" data-bs-target="#Input_List_C"><span class="material-icons">
+        edit
+        </span></button><strong>{type}</strong></> 
         break;
     }
     const newNode = {
