@@ -4,7 +4,7 @@ import F_cargar_celda from '../context/F_cargar_celda';
 import vector,{ListaVectores} from '../data/vector';
 
 
-const Input_vector=({f,id,type})=>{
+const Input_vector=({f,id,type='Flujo'})=>{
   /*
 const context=useContext(F_cargar_celda);
 const[nombre,setNombre]=useState('');
@@ -113,19 +113,19 @@ return<>
       <div className="modal-body">
        <div className={'container-xxl'}>
            <div className={'row'}>
-            <h4 className={'col-3'}>Nombre:</h4><input id={'inputNombre'+type}className={'col-7'} /><h4 className={'col-2'}></h4>
+            <h6 className={'col-3'}>Nombre:</h6><input id={'inputNombre'+type}className={'col-7'} /><h6 className={'col-2'}></h6>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Densidad</h4><input id={'inputdDensidad'+type}className={'col-7'} /><h4 className={'col-2'}>(T/m3)</h4>
+            <h6 className={'col-3'}>Densidad:<br/><code>(pulpa)</code></h6><input id={'inputdDensidad'+type}className={'col-7 '} /><h6 className={'col-2'}>(T/m3)</h6>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Solido</h4><input id={'inputSolido'+type}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
+            <h6 className={'col-3'}>Sólido:</h6><input id={'inputSolido'+type}className={'col-7'} /><h6 className={'col-2'}>(%)</h6>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Ley</h4><input id={'inputLey'+type}className={'col-7'} /><h4 className={'col-2'}>(%)</h4>
+            <h6 className={'col-3'}>Ley:</h6><input id={'inputLey'+type}className={'col-7'} /><h6 className={'col-2'}>(%)</h6>
            </div>
            <div className={'row'}>
-            <h4 className={'col-3'}>Caudal</h4><input id={'inputCaudal'+type}className={'col-7'} /><h4 className={'col-2'}>(m3/h)</h4>
+            <h6 className={'col-3'}>Caudal:<br/><code>(pulpa)</code></h6><input id={'inputCaudal'+type}className={'col-7'} /><h6 className={'col-2'}>(m3/h)</h6>
            </div>
        </div>
       </div>

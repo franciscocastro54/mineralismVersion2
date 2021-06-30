@@ -1,7 +1,7 @@
 import React from 'react';
-
-
-
+import ReactDOM from 'react-dom';
+import Sistema_celda from '../containers/Sistema_celda';
+import Sistema_circuto from '../containers/Sistema_circuitos';
 
 
 
@@ -10,7 +10,28 @@ import React from 'react';
 const Barra = () => {
 
 
+const load =(num)=>{
 
+switch (num) {
+  case 1:
+    ReactDOM.render(
+      <Sistema_celda/>,
+      document.getElementById('Pantalla_central')
+    );
+    break;
+
+    case 2:
+     
+      ReactDOM.render(
+        <Sistema_circuto/>,
+        document.getElementById('Pantalla_central')
+      );
+  default:
+    break;
+}
+
+
+}
 
   return <div className="accordion Barra" id="accordionExample">
     <div className="accordion-item">
@@ -21,8 +42,8 @@ const Barra = () => {
       </h2>
       <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div className="accordion-body">
-          <a onClick={() => { console.log('hola mundo') }}><p>Balance Polpaico</p></a>
-          <a onClick={() => { console.log('hola mundo') }}><p>Circuito Completo</p></a>
+          <a onClick={()=>load(1)}><p>Balance Polpaico</p></a>
+          <a onClick={()=>load(2)}><p>Circuito Completo</p></a>
         </div>
       </div>
     </div>

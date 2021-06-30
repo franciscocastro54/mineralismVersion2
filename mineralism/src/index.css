@@ -25,3 +25,10 @@ padding: 0px;
 
 
 }
+
+.list-group{
+
+  margin-bottom: 10px;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}

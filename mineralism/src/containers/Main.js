@@ -15,7 +15,7 @@ return <div className={'container-xxl'}>
 <Barra/>
 </div>
 <div id={'Pantalla_central'}className={'col-10 sinpadd'}>
-<Sistem_celda/>
+
 </div>
  </div>
  
