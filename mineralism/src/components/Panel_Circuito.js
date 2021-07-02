@@ -31,6 +31,10 @@ const Borrador3=()=>{
   const [elements, setElements] = useState(initialElements);
   const onConnect = (params) => setElements((els) => { params.animated=true;
     params.type='smoothstep'
+    if(params.sourceHandle=='a'){
+    params.style={stroke:'green'}
+  }else if(params.sourceHandle=='b'){
+    params.style={stroke:'orange'}}
     return addEdge(params, els)});
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
@@ -64,9 +68,7 @@ const id=getId();
         break;
                                 
       default:
-        label=<><button data-bs-toggle="modal" data-bs-target="#Input_List_C"><span class="material-icons">
-        edit
-        </span></button><strong>{type}</strong></> 
+        label=<><button data-bs-toggle="modal" data-bs-target="#Input_List_C"></button><strong>{type}</strong></> 
         break;
     }
     const newNode = {

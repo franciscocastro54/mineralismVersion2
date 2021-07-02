@@ -7,13 +7,12 @@ import Input_vector from '../components/Input_vector';
 import F_cargar_celda from '../context/F_cargar_celda';
 const Caja_negra = () => {
 
-    const [vector, setVector] = useState([]);
-    const datavector = [vector, setVector]
+   
 
 
 
     return <div className={'container-xxl'}>
-        <F_cargar_celda.Provider value={datavector}>
+       
             <div className={'row'}>
                 <div className={'col sinpadding'}><Lista_flujos type={'Alimentación_F'} /></div>
                 <div className={'col sinpadding'}><Lista_flujos type={'Cola_T'} /></div>
@@ -26,7 +25,7 @@ const Caja_negra = () => {
                
             </div>
             <div id={'info_vector'}></div>
-        </F_cargar_celda.Provider>
+     
     </div>
 }
 

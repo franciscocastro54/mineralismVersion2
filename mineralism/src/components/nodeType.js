@@ -23,13 +23,13 @@ const CustomNodeComponent = ({ data }) => {
           type="source"
           position="right"
           id="a"
-          style={{ top: '30%', borderRadius: 5 }}
+          style={{ top: '30%', borderRadius: 5 ,background: 'green' }}
         />
         <Handle
           type="source"
           position="right"
           id="b"
-          style={{ top: '70%', borderRadius: 5 }}
+          style={{ top: '70%', borderRadius: 5,background: 'orange' }}
         />
       </div>
     );
@@ -43,7 +43,7 @@ const CustomNodeComponent = ({ data }) => {
         <Handle
           type="source"
           position="right"
-          id="a"
+         
           style={{ top: '50%', borderRadius: 5 }}
         />
         
@@ -59,7 +59,7 @@ const AlimentacionNode= ({ data }) => {
         <Handle
           type="source"
           position="right"
-          id="b"
+         
           style={{ top: '50%', borderRadius: 5 }}
         />
       </div>

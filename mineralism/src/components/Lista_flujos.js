@@ -12,6 +12,21 @@ const Lista_flujos = ({ type = 'Alimentacion' }) => {
     const Titulo = type;
     const [list, setList] = useState([]);
     const [vector, setVector] = useState('prueba');
+    const cargarLista=()=>{
+    if(sessionStorage.getItem('ListaBalance'+type)!=null){
+        setList(JSON.parse(sessionStorage.getItem('ListaBalance'+type)))
+    console.log(JSON.parse(sessionStorage.getItem('ListaBalance'+type)))
+    }
+    }
+    const guardarLista=()=>{
+
+sessionStorage.setItem('ListaBalance'+type,JSON.stringify(list))
+console.log(JSON.stringify(list)+type)
+
+    }
+    useEffect(()=>cargarLista(),[])
+    useEffect(()=>guardarLista(),[list])
+   
     /*
 
     const addCelda=()=>{
