@@ -14,19 +14,23 @@ const load =(num)=>{
 
 switch (num) {
   case 1:
-    ReactDOM.render(
+  /*  ReactDOM.render(
       <Sistema_celda/>,
       document.getElementById('Pantalla_central')
-    );
+    );*/
+    document.getElementById('celda').style.display='block'
+    document.getElementById('circuito').style.display='none'
     break;
 
     case 2:
-     
+     /*
       ReactDOM.render(
         <Sistema_circuto/>,
         document.getElementById('Pantalla_central')
-      );
-  default:
+      );*/
+      document.getElementById('celda').style.display='none'
+      document.getElementById('circuito').style.display='block'
+     default:
     break;
 }
 

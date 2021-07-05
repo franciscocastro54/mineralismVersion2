@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect,useCallback,useContext} from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -6,19 +6,19 @@ import ReactFlow, {
   Controls,
 } from 'react-flow-renderer';
 import nodeType from './nodeType';
-
+import F_cargar_celda from '../context/F_cargar_celda';
 
 
 
 
 
 const initialElements = [
-  /*{
+  {
     id: '1',
     type: 'special',
     data: { label: 'Celda' },
     position: { x: 250, y: 5 },
-  },*/
+  },
 ];
 
 let id = 0;
@@ -29,6 +29,35 @@ const Borrador3=()=>{
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [elements, setElements] = useState(initialElements);
+const [loadElements,setLoadElements]=useContext(F_cargar_celda)
+console.log(useContext(F_cargar_celda))
+console.log(loadElements+'\n'+setLoadElements)
+//--------------------------------------------
+const cargarLista=  useCallback(() => {
+  const restoreFlow = async () => {
+  const flow =  sessionStorage.getItem('123');
+    if (flow) {
+      console.log(loadElements.elements)
+     
+      setElements(loadElements.elements);
+     
+    }
+  }
+  restoreFlow()
+  },[setElements])
+  const guardarLista=()=>{
+    if (reactFlowInstance) {
+      const flow = reactFlowInstance.toObject();
+      console.log(flow)
+      setLoadElements (flow);
+    }
+  
+
+  }
+ // useEffect(()=>cargarLista(),[])
+ // useEffect(()=>guardarLista(),[elements])
+//----------------------------------------------
+
   const onConnect = (params) => setElements((els) => { params.animated=true;
     params.type='smoothstep'
     if(params.sourceHandle=='a'){
@@ -39,9 +68,9 @@ const Borrador3=()=>{
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
 
-  const onLoad = (_reactFlowInstance) =>
-    setReactFlowInstance(_reactFlowInstance);
-
+  const onLoad = (_reactFlowInstance) =>{
+    setReactFlowInstance(_reactFlowInstance)
+  }
   const onDragOver = (event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
@@ -68,7 +97,7 @@ const id=getId();
         break;
                                 
       default:
-        label=<><button data-bs-toggle="modal" data-bs-target="#Input_List_C"></button><strong>{type}</strong></> 
+        label=<><button>X</button><strong>{type}</strong></> 
         break;
     }
     const newNode = {
@@ -80,7 +109,7 @@ const id=getId();
 
     setElements((es) => es.concat(newNode));
   };
-
+//<button onClick={cargarLista}>cargar</button>
   return (
     <div >
       <ReactFlowProvider>

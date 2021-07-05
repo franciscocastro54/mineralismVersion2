@@ -1,38 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Lista_flujos from './Lista_flujos';
 import Input_vector from './Input_vector';
-
+import Informacion_Celda from './Informacion_Celda';
+import Circuito from '../data/Circuito';
 const Lista_Flujos_circuito = () => {
+  const [circuito, setCircuito] = useState(Circuito)
 
-
-  return <div class="modal fade" id="Input_List_C" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ingreso de flujos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div className={'container'}>
-            <div className={'row'}>
-           
-
-              <div className={'col-4 sinpadding'}><Lista_flujos type={'Alimentación_F'} /></div>
-                <div className={'col-4 sinpadding'}><Lista_flujos type={'Cola_T'} /></div>
-                <div className={'col-4 sinpadding'}><Lista_flujos type={'Concentrado_C'} /></div>
-                     <Input_vector/>
-            </div>
-
+  return <div className={'container'}>
+    <div className={'row'}>
+      <div className={'col'}>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          {circuito.map((celda) =>(
+            <li class="nav-item" role={celda.id}>
+              <button class="nav-link" id={'home-tab'+celda.id} data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{celda.Nombre}</button>
+            </li>))}
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+            {circuito.map((celda)=>(
+            <Informacion_Celda Celda={celda} />
+            ))}
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>
   </div>
-
-
 }
 
 
