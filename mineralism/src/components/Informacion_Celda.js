@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext,useCallback } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Elementos } from '../data/Circuito';
 import F_cargar_celda from '../context/F_cargar_celda';
 import F_Elements from '../context/F_Elements';
 import icono_edit from '../Graficos/Icono_panel.png'
+import vector from '../data/vector';
 
 const Informacion_Celda = ({ Celda = Elementos }) => {
     const [circuito, setCircuito] = useContext(F_cargar_celda)
-    const [elements,setElements]= useContext(F_Elements)
+    const [elements, setElements] = useContext(F_Elements)
     const onChange = (event) => {
         const onClick = () => {
             Celda.focus = (Celda.focus) ? false : true
@@ -14,8 +15,8 @@ const Informacion_Celda = ({ Celda = Elementos }) => {
         const value = event.target.value
         console.log(event.target.value)
         Celda.Grafico.data.label = <><button className={'btn btn-info'} onClick={() => onClick(Celda)}><img src={icono_edit} /></button><strong>{value}</strong></>
-       setCircuito((circuito) => circuito.map((celda) => (celda.id == Celda.id) ? Celda : celda))
-       console.log(elements)
+        setCircuito((circuito) => circuito.map((celda) => (celda.id == Celda.id) ? Celda : celda))
+        console.log(elements)
     }/*
 const onChangetype=(event)=>{
     const value=event.target.value
@@ -30,28 +31,76 @@ console.log( Celda.Grafico.type)
 
         Celda.Grafico.style = { border: '1px solid ' + value }
         setCircuito((circuito) => circuito.map((celda) => (celda.id == Celda.id) ? Celda : celda))
-   
-    //  actualizar()
+
+        //  actualizar()
 
 
     }
-   const actualizar= useCallback(()=>(setElements(c=>[...c,{id:'1',data:<h2>asd</h2>}])),[setElements])
+    const actualizar = useCallback(() => (setElements(c => [...c, { id: '1', data: <h2>asd</h2> }])), [setElements])
 
     const [nombre, setNombre] = useState('')
     const [densidad, setDensidad] = useState(0)
     const [solido, setSolido] = useState(0)
     const [ley, setLey] = useState(0)
     const [caudal, setCaudal] = useState(0)
-
+    const [vectorData, setVectorData] = useState(null)
     const loadCelda = (vector) => {
-        console.log(vector)
-        setNombre(vector.nombre)
-        /* document.getElementById("densidad"+Celda.id).innerHTML='123'
-         console.log( document.getElementById("densidad"+Celda.id))
-         document.getElementById('solido'+Celda.id).innerHTML=vector.porcSolido
-         document.getElementById('ley'+Celda.id).innerHTML=vector.ley
-         document.getElementById('caudal'+Celda.id).innerHTML=vector.caudalP
-         */
+        console.log(vector.data.densidad)
+        setNombre(vector.data.nombre)
+        document.getElementById("densidad" + Celda.id).value = vector.data.densidad
+        console.log(document.getElementById("densidad" + Celda.id))
+        document.getElementById('solido' + Celda.id).value = vector.data.porcSolido
+        document.getElementById('ley' + Celda.id).value = vector.data.ley
+        document.getElementById('caudal' + Celda.id).value = vector.data.caudalP
+        setVectorData(vector);
+
+
+    }
+    const Guardar = () => {
+
+        vectorData.data=vector(
+          nombre,
+          document.getElementById("densidad" + Celda.id).value,
+          document.getElementById('solido' + Celda.id).value,
+          document.getElementById('ley' + Celda.id).value,
+          document.getElementById('ley' + Celda.id).value,
+          document.getElementById('caudal' + Celda.id).value
+        )
+
+
+        
+ setCircuito((circuito)=>{
+circuito.map((celda)=>{
+celda.Data.map((vector)=>{
+
+if(vector.id==vectorData.id){
+
+vector.data=vectorData.data
+
+}
+
+    return vector
+})
+console.log(celda)
+
+    return celda
+})
+
+return circuito
+        })
+
+        setCircuito((c)=>[...c,{
+            'id': 'celda1',
+            'focus':true,
+            'Nombre': 'Default',
+            'Grafico': '',
+            'Data': []
+          }])
+setCircuito(c=>{
+c.pop()
+return c
+
+})
 
     }
     return <>
@@ -91,7 +140,7 @@ console.log( Celda.Grafico.type)
                                             {
                                                 Celda.Data.map(vector => (
                                                     <li><button type="button" className={'btn btn-primary'}
-                                                        onClick={() => loadCelda(vector.data)} data-bs-toggle="modal" data-bs-target={'#Input_List_C' + Celda.id}>{vector.data.nombre}</button></li>
+                                                        onClick={() => loadCelda(vector)} data-bs-toggle="modal" data-bs-target={'#Input_List_C' + Celda.id}>{vector.data.nombre}</button></li>
                                                 )
                                                 )}
                                         </ul>
@@ -118,7 +167,7 @@ console.log( Celda.Grafico.type)
                                                 </div>
 
                                                 <div class="col-6">
-                                                    <input type="text" id={"densidad" + Celda.id} class="form-control" placeholder="12.345" />
+                                                    <input type="text" id={"densidad" + Celda.id} class="form-control" />
                                                 </div>
 
                                                 <div class="col-auto">
@@ -188,7 +237,7 @@ console.log( Celda.Grafico.type)
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary" onClick={() => Guardar()}>Save changes</button>
                                     </div>
                                 </div>
                             </div>
