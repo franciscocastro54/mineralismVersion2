@@ -20,6 +20,7 @@ switch (num) {
     );*/
     document.getElementById('celda').style.display='block'
     document.getElementById('circuito').style.display='none'
+    document.getElementById('reportes').style.display='none'
     break;
 
     case 2:
@@ -30,6 +31,13 @@ switch (num) {
       );*/
       document.getElementById('celda').style.display='none'
       document.getElementById('circuito').style.display='block'
+      document.getElementById('reportes').style.display='none'
+      break;
+      case 3:
+        document.getElementById('celda').style.display='none'
+      document.getElementById('circuito').style.display='none'
+      document.getElementById('reportes').style.display='block'
+      break;
      default:
     break;
 }
@@ -59,7 +67,7 @@ switch (num) {
       </h2>
       <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
         <div className="accordion-body">
-          {/*Aqui van los reportes */}
+        <a onClick={()=>load(3)}><p>Reportes</p></a>
         </div>
       </div>
     </div>
