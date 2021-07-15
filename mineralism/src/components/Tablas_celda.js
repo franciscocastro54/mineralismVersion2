@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import TableVector from '../data/tabla';
 import Tabla_diferencia from '../data/Tabla_diferencia';
+import {Elementos} from '../data/Circuito';
+import F_Balance from '../context/F_Balance';
 import Vector, {
     Celda,
     sumaParam,
@@ -20,16 +22,49 @@ const Tabla_celda = ({ types = [] }) => {
     const [listaRecupMasa, setListaRecupMasa] = useState(ListaRecupMasa([vectorVacio], [vectorVacio], [vectorVacio]))
     const [listaRecupLey, setListaRecupLey] = useState(ListaRecupLey([vectorVacio], [vectorVacio], [vectorVacio]))
     const [listaError, setListaError] = useState(ListaError([vectorVacio], [vectorVacio], [vectorVacio]))
+    const [circuito,setCircuito]=useContext(F_Balance);
     let listb = []
     const cargar = () => {
         let flag=false;
         setRow([])
+        setCircuito([Object.create(Elementos)])
         for (let i = 0; i < types.length; i++) {
             
             if (sessionStorage.getItem('listaVectores' + types[i]) != null) {
                 const list = ListaVectores()
-
                 list.vectores = list.updateList(JSON.parse(sessionStorage.getItem('listaVectores' + types[i])))
+                
+
+                list.vectores.map((vector)=>{
+                    setCircuito(Circuito=> {
+                        Circuito[0].Data.push({
+                            'id': vector.nombre,
+                            'Grafico': {
+                              'id': '',
+                              'type': '',
+                              'source': '',
+                              'target': '',
+                              'animated': true,
+                              'label': ''
+                            },
+                            'data': {
+                              'nombre': vector.nombre,
+                              'densidad': vector.densidad,
+                              'porcSolido': vector.porcSolido,
+                              'ley': vector.ley,
+                              'caudalP': vector.caudalP,
+                              'MPulpa': vector.MPulpa,
+                              'MSolido': vector.MSolido,
+                              'Fino': vector.Fino,
+                              'tipo': vector.tipo
+                            }});
+                    
+                            return Circuito   })
+                    
+                    })
+
+
+
 
                 setRow(row => [...row, list])
                 listb = [...listb, list.vectores]
@@ -38,11 +73,16 @@ const Tabla_celda = ({ types = [] }) => {
              flag=true;  
             }
         }
+
+        setCircuito(c=>[...c,c])
+        setCircuito(c=>{c.pop();
+        return c})
         if(flag){ setRow([ListaVectores()]);
         }else{
         setListaRecupMasa(ListaRecupMasa(listb[0], listb[2]))
         setListaRecupLey(ListaRecupLey(listb[0], listb[1], listb[2]))
         setListaError(ListaError(listb[0], listb[1], listb[2]))
+    
     }}
 
     return <>
