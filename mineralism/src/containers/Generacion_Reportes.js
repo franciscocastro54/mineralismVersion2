@@ -5,6 +5,18 @@ import F_cargar_celda from '../context/F_cargar_celda';
 import Truncate from '../data/Truncado';
 import Circuito from '../data/Circuito';
 import F_Balance from '../context/F_Balance';
+import vector, {
+    Celda,
+    sumaParam,
+    RecupMasa,
+    RecupLey,
+    ListaVectores,
+    ListaRecupLey,
+    ListaRecupMasa,
+    ListaError,
+    findVector
+} from '../data/vector';
+
 const Generacion_Reportes = () => {
 
 
@@ -17,17 +29,78 @@ const Generacion_Reportes = () => {
 
 
     const CambiarFuente = (event) => {
-        console.log(event)
+
+        let alimentacion = []
+        let concentrado = []
+        let relave = []
         switch (event.target.id) {
             case 'flexRadioDefault1':
-setCircuito(circuitoCajaNegra)
+                setCircuito(circuitoCajaNegra)
+                console.log(circuitoCajaNegra)
+                circuitoCajaNegra.map((celda) =>
+
+                    celda.Data.map((vector => {
+                        switch (vector.data.tipo) {
+                            case 'Alimentación_F':
+                                alimentacion.push(vector.data)
+                                break;
+                            case 'Cola_T':
+                                relave.push(vector.data)
+                                break;
+                            case 'Concentrado_C':
+                                concentrado.push(vector.data)
+                                break;
+                        }
+
+
+
+                    }
+                    ))
+                )
+
+
+
+
                 break;
             case 'flexRadioDefault2':
                 setCircuito(circuitoCompleto)
+
+
+                circuitoCompleto.map((celda) =>
+                    celda.Data.map((vector => {
+                        switch (vector.data.tipo) {
+                            case 'alimentacion':
+                                alimentacion.push(vector.data)
+                                break;
+                            case 'cola':
+                                relave.push(vector.data)
+                                break;
+                            case 'concentrado':
+                                concentrado.push(vector.data)
+                                break;
+                        }
+
+
+
+                    }
+                    ))
+                )
+
                 break;
 
 
         }
+        console.log(alimentacion,concentrado,relave)
+        let recupley = ListaRecupLey(alimentacion, concentrado, relave).recupLey
+        let recuperacionL = document.getElementById("recuperacionL");
+        let concentradoComunL = document.getElementById("concentradoComunL");
+        let alimentacionL = document.getElementById("alimentacionL");
+        let rechazoL = document.getElementById("rechazoL");
+        recuperacionL.innerHTML = ("<td >" + recupley.recuperacion + "</td>");
+        concentradoComunL.innerHTML = ("<td >" + recupley.concComun + "</td>");
+        alimentacionL.innerHTML = ("<td >" + recupley.alimentacion + "</td>");
+        rechazoL.innerHTML = ("<td >" + recupley.rechazo + "</td>");
+
 
     }
 
@@ -67,7 +140,7 @@ setCircuito(circuitoCajaNegra)
                             <label for="tablaRecupLey" class="fw-bold">Recuperación por leyes</label>
                         </h4>
                         <div class="col-auto">
-                            <button id="tablaRecupLey" class="btn btn-info  fw-bold text-primary  " onclick="tableToExcel('tableRecupLey', 'Recuperación por leyes', 'RecuperacionLey.xls')" value="Export to Excel">Generar reporte</button>
+                            <button id="tablaRecupLey" class="btn btn-info  fw-bold text-primary  " onClick={() => (TableToExcel('tableRecupLey', 'Recuperación por leyes', 'RecuperacionLey.xls'))} value="Export to Excel">Generar reporte</button>
                         </div>
                     </div>
 
@@ -155,7 +228,36 @@ setCircuito(circuitoCajaNegra)
                                 }
                             </tbody>
                         </table></div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <table id="tableRecupLey">
+                            <caption>Recuperacion por ley</caption>
+                            <thead>
+                                <tr>
+                                    <th class="ID" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>ID</th>
+                                    <th class="unidadLey" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="name" style={style2}>Concentrado comun</td>
+                                    <td id="concentradoComunL" style={style2} ></td>
+                                </tr>
+                                <tr>
+                                    <td class="name" style={style2}>Alimentacion</td>
+                                    <td id="alimentacionL" style={style2}></td>
+                                </tr>
+                                <tr>
+                                    <td class="name" style={style2}>Rechazo</td>
+                                    <td id="rechazoL" style={style2}></td>
+                                </tr>
+                                <tr>
+                                    <td class="name" style={style2}>Recuperacion</td>
+                                    <td id="recuperacionL" style={style2}></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                 </div>
 

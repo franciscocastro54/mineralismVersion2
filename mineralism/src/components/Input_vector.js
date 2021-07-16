@@ -46,9 +46,9 @@ if(sessionStorage.getItem('listaVectores'+type)!=null){
 
 list.vectores=list.updateList(JSON.parse(sessionStorage.getItem('listaVectores'+type)))
 
-console.log(list.vectores)
+
 }
-console.log(nombre,'   ',id)
+
 
 if(id==undefined){
  f[1]((list)=>[...list, nombre])
@@ -70,7 +70,7 @@ list.vectores=list.updateVector(id,nombre,densidad,solido,ley,caudal,type)
  // {vectores,addVector,removeVector,updateVector}
 
 
-console.log(list.vectores)
+
   sessionStorage.setItem('listaVectores'+type,JSON.stringify(list.vectores));
 }
 const remove =()=>{
@@ -89,7 +89,7 @@ const remove =()=>{
 
   list.vectores=list.updateList(JSON.parse(sessionStorage.getItem('listaVectores'+type)))
   
-  console.log(list.vectores)
+
 
 
   list.vectores=list.removeVector(id);

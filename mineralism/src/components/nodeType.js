@@ -59,19 +59,33 @@ const AlimentacionNode= ({ data }) => {
         <Handle
           type="source"
           position="right"
-         
+         id='alimentacion'
           style={{ top: '50%', borderRadius: 5 }}
         />
       </div>
     );
   };
 
-  const SalidaNode= ({ data }) => {
+  const ColaNode= ({ data }) => {
     return (
       <div style={customNodeStyles}>
        
         <div>{data.label}</div>
-        <Handle type="target" position="left" style={{ borderRadius: 5 }} />
+        <Handle
+        id='cola'
+        type="target" position="left" style={{ borderRadius: 5 }} />
+       
+      </div>
+    );
+  };
+  const ConcentradoNode= ({ data }) => {
+    return (
+      <div style={customNodeStyles}>
+       
+        <div>{data.label}</div>
+        <Handle
+        id='concentrado'
+        type="target" position="left" style={{ borderRadius: 5 }} />
        
       </div>
     );
@@ -80,10 +94,10 @@ const AlimentacionNode= ({ data }) => {
  export default  { 
     special : CustomNodeComponent ,
     input : AlimentacionNode,
-    output: SalidaNode,
+    output: ColaNode,
     Alimentacion:AlimentacionNode,
     Celda:CustomNodeComponent,
     Nodo:NodeComponent,
-    ColaFinal:SalidaNode,
-    ConcentradoFinal:SalidaNode
+    ColaFinal:ColaNode,
+    ConcentradoFinal:ConcentradoNode
   } ;
