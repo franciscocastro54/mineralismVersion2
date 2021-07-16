@@ -88,7 +88,7 @@ th{background:rgb(84, 97, 155);text-align:center;}
 td{text-align:center;}
 tr:nth-child(even){background:rgb(119, 146, 204);}
 tr:nth-child(odd){background:rgb(89, 131, 221);}
-tr td:hover{background:rgb(58, 78, 167); color:#FFF;}
+tr:hover{background:rgb(58, 78, 167); color:#FFF;}
 
 [cssTag~=card-header]{
     color: bisque;
