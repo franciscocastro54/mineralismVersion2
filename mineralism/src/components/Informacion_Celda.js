@@ -58,28 +58,47 @@ console.log( Celda.Grafico.type)
     }
     const Guardar = () => {
 
-        vectorData.data=vector(
-          nombre,
-          document.getElementById("densidad" + Celda.id).value,
-          document.getElementById('solido' + Celda.id).value,
-          document.getElementById('ley' + Celda.id).value,
-          document.getElementById('ley' + Celda.id).value,
-          document.getElementById('caudal' + Celda.id).value
-        )
+      
 
 
         
  setCircuito((circuito)=>{
 circuito.map((celda)=>{
-celda.Data.map((vector)=>{
+celda.Data.map((Vector)=>{
 
-if(vector.id==vectorData.id){
+if(Vector.id==vectorData.id){
 
-vector.data=vectorData.data
+    let tipo='';
+    switch(Vector.data.tipo){
+case 'alimentacion':
+tipo='alimentacion'
+break;
+case 'cola':
+tipo='cola'
+break;
+case 'concentrado':
+tipo='concentrado'
+break;
+default:
+tipo=''
+break;
+
+
+    }
+    vectorData.data=vector(
+        nombre,
+        document.getElementById("densidad" + Celda.id).value,
+        document.getElementById('solido' + Celda.id).value,
+        document.getElementById('ley' + Celda.id).value,
+
+        document.getElementById('caudal' + Celda.id).value,
+       tipo
+      )
+      Vector.data=vectorData.data
 
 }
 
-    return vector
+    return Vector
 })
 console.log(celda)
 

@@ -99,6 +99,17 @@ return c
           let newid=getIdVector()
           aux.id = newid
           params.id = newid
+          let tipo='';
+         if(params.sourceHandle=='alimentacion'){
+          tipo='alimentacion'
+         }
+         if(params.targetHandle=='cola'){
+tipo='cola'
+
+         }
+         if(params.targetHandle=='concentrado'){
+          tipo='concentrado'
+                   }
           aux.data={
             'nombre': newid,
             'densidad': 0,
@@ -108,7 +119,7 @@ return c
             'MPulpa': 0,
             'MSolido': 0,
             'Fino': 0,
-            'tipo': ''
+            'tipo': tipo
           }
           console.log(aux)
           console.log(aux.data)
