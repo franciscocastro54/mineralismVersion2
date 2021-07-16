@@ -5,6 +5,7 @@ import F_cargar_celda from '../context/F_cargar_celda';
 import Truncate from '../data/Truncado';
 import Circuito from '../data/Circuito';
 import F_Balance from '../context/F_Balance';
+
 import vector, {
     Celda,
     sumaParam,
@@ -90,18 +91,36 @@ const Generacion_Reportes = () => {
 
 
         }
-        console.log(alimentacion,concentrado,relave)
-        let recupley = ListaRecupLey(alimentacion, concentrado, relave).recupLey
+        console.log(alimentacion, concentrado, relave)
+        let recupley = ListaRecupLey(alimentacion, relave, concentrado).recupLey
+        let recupM = ListaRecupMasa(alimentacion, concentrado).recupMasa
+        let ListError = ListaError(alimentacion, relave, concentrado).Error;
         let recuperacionL = document.getElementById("recuperacionL");
         let concentradoComunL = document.getElementById("concentradoComunL");
         let alimentacionL = document.getElementById("alimentacionL");
         let rechazoL = document.getElementById("rechazoL");
-        recuperacionL.innerHTML = ("<td >" + recupley.recuperacion + "</td>");
-        concentradoComunL.innerHTML = ("<td >" + recupley.concComun + "</td>");
-        alimentacionL.innerHTML = ("<td >" + recupley.alimentacion + "</td>");
-        rechazoL.innerHTML = ("<td >" + recupley.rechazo + "</td>");
-
-
+        recuperacionL.innerHTML = ("<td >" + Truncate(recupley.recuperacion) + "</td>");
+        concentradoComunL.innerHTML = ("<td >" + Truncate(recupley.concComun) + "</td>");
+        alimentacionL.innerHTML = ("<td >" + Truncate(recupley.alimentacion) + "</td>");
+        rechazoL.innerHTML = ("<td >" + Truncate(recupley.rechazo) + "</td>");
+        let recuperacionM = document.getElementById("recuperacionM");
+        let concentradoComunM = document.getElementById("concentradoComunM");
+        let alimentacionM = document.getElementById("alimentacionM");
+        recuperacionM.innerHTML = ("<td >" + Truncate(recupM.recuperacion) + "</td>");
+        concentradoComunM.innerHTML = ("<td >" + Truncate(recupM.concComun) + "</td>");
+        alimentacionM.innerHTML = ("<td >" + Truncate(recupM.alimentacion) + "</td>");
+        let Balance_Mpulpa = document.getElementById('Balance_Mpulpa');
+        let Balance_MpulpaP = document.getElementById('Balance_Mpulpa%');
+        let Balance_MFino = document.getElementById('Balance_MFino');
+        let Balance_MFinoP = document.getElementById('Balance_MFino%');
+        let Balance_Msolido = document.getElementById('Balance_Msolido');
+        let Balance_MsolidoP = document.getElementById('Balance_Msolido%');
+            Balance_Mpulpa.innerHTML = ("<td >" + Truncate(ListError.masaPulpa.diferencia) + "</td>");
+            Balance_MpulpaP.innerHTML =("<td >" +Truncate(ListError.masaPulpa.porcError) + "</td>");
+            Balance_MFino.innerHTML =("<td >" +Truncate(ListError.masaFino.diferencia) + "</td>");
+            Balance_MFinoP.innerHTML =("<td >" + Truncate(ListError.masaFino.porcError) + "</td>");
+            Balance_Msolido.innerHTML =("<td >" + Truncate(ListError.masaSolido.diferencia) + "</td>");
+            Balance_MsolidoP.innerHTML = ("<td >" + Truncate(ListError.masaSolido.porcError) + "</td>");
     }
 
     return <div className={'container-xxl'}>
@@ -149,7 +168,7 @@ const Generacion_Reportes = () => {
                             <label for="tablaRecupMasa" class="fw-bold">Recuperación másica</label>
                         </h4>
                         <div class="col-auto">
-                            <button id="tablaRecupMasa" class="btn btn-info  fw-bold text-primary  " onclick="tableToExcel('tableRecupMasa', 'Recuperación masica', 'RecuperacionMasa.xls')" value="Export to Excel">Generar reporte</button>
+                            <button id="tablaRecupMasa" class="btn btn-info  fw-bold text-primary  " onClick={()=>TableToExcel('tableRecupMasa', 'Recuperación masica', 'RecuperacionMasa.xls')} value="Export to Excel">Generar reporte</button>
                         </div>
                     </div>
 
@@ -158,7 +177,7 @@ const Generacion_Reportes = () => {
                             <label for="tablaBalanceSolidos" class="fw-bold">Balance de sólidos</label>
                         </h4>
                         <div class="col-auto">
-                            <button id="tablaBalanceSolidos" class="btn btn-info  fw-bold text-primary" onclick="tableToExcel('tableBalanceSol', 'BalanceDeSolidos', 'BalanceDeSolidos.xls')" value="Export to Excel">Generar reporte</button>
+                            <button id="tablaBalanceSolidos" class="btn btn-info  fw-bold text-primary" onClick={()=>TableToExcel('tableBalanceSol', 'BalanceDeSolidos', 'BalanceDeSolidos.xls')} value="Export to Excel">Generar reporte</button>
                         </div>
                     </div>
 
@@ -189,7 +208,7 @@ const Generacion_Reportes = () => {
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Recuperación másica</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#Balance de sólidos" type="button" role="tab" aria-controls="contact" aria-selected="false">Balance de sólidos</button>
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#Balance_de_sólidos" type="button" role="tab" aria-controls="contact" aria-selected="false">Balance de sólidos</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -258,7 +277,72 @@ const Generacion_Reportes = () => {
 
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <table id="tableRecupMasa">
+                            <caption>Recuperacion masica</caption>
+                            <thead>
+
+
+                                <tr>
+                                    <th class="ID" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>ID</th>
+                                    <th class="unidadMasa" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black' }}>T/h</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="name" style={style2} >Concentrado comun</td>
+                                    <td id="concentradoComunM" style={style2} ></td>
+                                </tr>
+                                <tr>
+                                    <td class="name" style={style2} >Alimentacion</td>
+                                    <td id="alimentacionM" style={style2}></td>
+                                </tr>
+                                <tr>
+                                    <td class="name" style={style2}>Recuperacion</td>
+                                    <td id="recuperacionM" style={style2}></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <div class="tab-pane fade" id="Balance_de_sólidos" role="tabpanel" aria-labelledby="contact-tab">
+                        <table id={'tableBalanceSol'} >
+                            <caption>Balance de sólido</caption>
+                            <thead>
+                                <tr>
+                                    <th style={style1}>ID</th>
+                                    <th style={style1}>Diferencia (T/hr)</th>
+                                    <th style={style1}>Porcentaje de error</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th style={style2}>Masa Pulpa</th>
+                                    <th id={'Balance_Mpulpa'}style={style2}></th>
+                                    <th id={'Balance_Mpulpa%'}style={style2}></th>
+                                </tr>
+
+                                <tr>
+                                    <th style={style2}>Masa Sólido</th>
+                                    <th id={'Balance_Msolido'}style={style2}></th>
+                                    <th id={'Balance_Msolido%'}style={style2}></th>
+                                </tr>
+
+                                <tr>
+                                    <th style={style2}>Masa Fino</th>
+                                    <th id={'Balance_MFino'}style={style2}></th>
+                                    <th id={'Balance_MFino%'}style={style2}></th>
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
                 </div>
 
 

@@ -20,6 +20,7 @@ const Vector = {
     'tipo': ''
   },
 }
+
 const GElemento = {
   'id': '',
   'type': '',
@@ -27,6 +28,7 @@ const GElemento = {
   'position': { 'x': 0, 'y': 0 },
   'style':{'border': '1px solid #777'}
 }
+
 const Elementos = {
   'id': 'celda1',
   'focus':true,
@@ -34,7 +36,9 @@ const Elementos = {
   'Grafico': GElemento,
   'Data': []
 }
+
 const Circuito = []
+
 export {
   Circuito as default,
   Elementos,
