@@ -309,7 +309,7 @@ const Generacion_Reportes = () => {
 
                     </div>
                     <div class="tab-pane fade" id="Balance_de_sólidos" role="tabpanel" aria-labelledby="contact-tab">
-                        <table id={'tableBalanceSol'} >
+                        <table id={'tableBalanceSol'}  >
                             <caption>Balance de sólido</caption>
                             <thead>
                                 <tr>

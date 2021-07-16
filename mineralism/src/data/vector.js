@@ -310,7 +310,7 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
     const view = () => {
         return (<>
             <h6 className={'text-center'}>Recuperación Masica</h6>
-            <table className={'table'}>
+            <table  className={'table'}>
                 
                 <thead>
                     
@@ -321,18 +321,18 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Concentrado común</th>
-                            <th>{Truncado(recupMasa.concComun)}</th>
+                            <td>Concentrado común</td>
+                            <td>{Truncado(recupMasa.concComun)}</td>
                         </tr>
 
                         <tr>
-                            <th>Alimentación</th>
-                            <th>{Truncado(recupMasa.alimentacion)}</th>
+                            <td>Alimentación</td>
+                            <td>{Truncado(recupMasa.alimentacion)}</td>
                         </tr>
 
                         <tr>
-                            <th>Recuperación</th>
-                            <th>{Truncado(recupMasa.recuperacion)}</th>
+                            <td>Recuperación</td>
+                            <td>{Truncado(recupMasa.recuperacion)}</td>
                         </tr>
 
                     </tbody>
