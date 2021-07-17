@@ -27,6 +27,9 @@ padding: 0px;
 .list-group{
 
   margin-bottom: 10px;
-  overflow:scroll;
-  -webkit-overflow-scrolling: touch;
+  overflow-y:auto;
+overflow-x: auto;
+  max-height: 14em;
+  min-height: 14em;
+  
 }
