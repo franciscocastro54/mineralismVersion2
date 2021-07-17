@@ -10,9 +10,9 @@ const Caja_negra = () => {
     return <div className={'container-xxl'}>
 
         <div className={'row'}>
-            <div className={'col sinpadding'}><Lista_flujos type={'Alimentación_F'} /></div>
-            <div className={'col sinpadding'}><Lista_flujos type={'Cola_T'} /></div>
-            <div className={'col sinpadding'}><Lista_flujos type={'Concentrado_C'} /></div>
+            <div className={'col sinpadding'}><Lista_flujos type={'Alimentación_F'} simbolo={'F'}/></div>
+            <div className={'col sinpadding'}><Lista_flujos type={'Cola_T'} simbolo={'T'}/></div>
+            <div className={'col sinpadding'}><Lista_flujos type={'Concentrado_C'} simbolo={'C'}/></div>
         </div>
         <div className={'row'}>
             <div className={'col sinpadd'}>

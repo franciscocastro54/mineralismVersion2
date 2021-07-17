@@ -27,16 +27,23 @@ const Tabla_celda = ({ types = [] }) => {
     const cargar = () => {
         let flag=false;
         setRow([])
-        setCircuito([Object.create(Elementos)])
+        setCircuito(()=>{
+                    
+            let aux=[Object.create(Elementos)]
+            aux[0].Data=[]
+            
+            return aux})
         for (let i = 0; i < types.length; i++) {
             
             if (sessionStorage.getItem('listaVectores' + types[i]) != null) {
                 const list = ListaVectores()
                 list.vectores = list.updateList(JSON.parse(sessionStorage.getItem('listaVectores' + types[i])))
+               
                 
-
                 list.vectores.map((vector)=>{
+
                     setCircuito(Circuito=> {
+                        
                         Circuito[0].Data.push({
                             'id': vector.nombre,
                             'Grafico': {

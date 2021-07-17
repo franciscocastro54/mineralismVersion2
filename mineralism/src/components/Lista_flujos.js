@@ -7,9 +7,11 @@ import { findVector,ListaVectores } from '../data/vector';
 
 
 
-const Lista_flujos = ({ type = 'Alimentacion' }) => {
+const Lista_flujos = ({ type = 'Alimentacion', simbolo='Error'}) => {
     const context = useContext(F_cargar_celda);
-    const Titulo = type;
+    let Titulo = type;
+ Titulo=Titulo.substring(0,(Titulo.length-2))
+ Titulo=Titulo+' ('+simbolo+')'
     const [list, setList] = useState([]);
     const [vector, setVector] = useState('prueba');
     const cargarLista=()=>{
@@ -86,7 +88,7 @@ sessionStorage.setItem('ListaBalance'+type,JSON.stringify(list))
                     )}
                 </ul>
             </div></div>
-            <Input_vector f={[list, setList]} id={vector} type={Titulo} />
+            <Input_vector f={[list, setList]} id={vector} type={type} />
 
         </div>
     </>
