@@ -1,0 +1,95 @@
+[cssTag~=titulo]{
+    background-color: rgb(136, 168, 238);
+    color: rgb(255, 255, 255);
+  
+    font-size: xx-large;
+    font-weight: bold;
+
+}
+
+[cssTag~=menu]{
+    background-color: rgb(105, 162, 226);
+ 
+}
+
+[cssTag~=item]{
+    color: rgb(240, 240, 231);
+    font-weight: bold;
+  
+}
+
+/*#navBar{
+    /*height: 100%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    text-align: left;
+    width: 340px;
+    padding:0px  45px;*/
+    
+/*    
+[cssTag~=navBar]{
+   
+    
+    
+
+}*/
+[cssTag~=menu-body]{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: rgb(106, 135, 199) ;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+[cssTag~=item-menu]{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: rgb(136, 168, 238) ;
+    
+}
+
+[cssTag~=bar-button]{
+    background-color: rgb(106, 135, 199);
+    border: rgb(106, 135, 199);
+    font-weight: bold;
+}
+
+h3{
+    color: rgb(105, 162, 226) ;
+    font-weight: bold;
+}
+
+[cssTag~=opciones]{
+    background-color:rgb(136, 168, 238) ;
+    color: rgb(255, 255, 255);
+}
+
+[cssTag~=contenido]{
+    background-color: rgb(106, 135, 199);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+button::target-text{
+    color: blueviolet;
+    background-color: brown;
+}
+
+#main{
+    background-color: cadetblue;
+}
+
+table {color:rgb(255, 255, 255); font-family:Helvetica, Arial, sans-serif;
+	width:640px; border-collapse:collapse;}
+td, th{border:1px solid rgb(63, 84, 173); }
+th{background:rgb(84, 97, 155);text-align:center;}
+td{text-align:center;}
+tr:nth-child(even){background:rgb(119, 146, 204);}
+tr:nth-child(odd){background:rgb(89, 131, 221);}
+tr:hover{background:rgb(58, 78, 167); color:#FFF;}
+
+[cssTag~=card-header]{
+    color: bisque;
+    background-color: rgb(106, 135, 199);
+    font-weight: bold;
+}
