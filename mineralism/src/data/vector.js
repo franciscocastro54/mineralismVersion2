@@ -174,7 +174,7 @@ const ListaVectores = () => {
 
     const view = (lista) =>{
         return(
-            <table className={'table'}>
+            <table className={'table'} style={{color:'white'}}>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -255,7 +255,7 @@ const ListaRecupLey = (listaVAlim, listaVRelave, listaVConcentrado) => {
 
         return (<>
  <h6 className={'text-center'}>Recuperación por ley</h6>
-            <table className={'table'}>
+            <table className={'table'} style={{height:'90%',color:'white'}}>
               
                 <thead>
                     <tr>
@@ -265,23 +265,23 @@ const ListaRecupLey = (listaVAlim, listaVRelave, listaVConcentrado) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Concentrado común</th>
-                            <th>{Truncado(recupLey.concComun)}</th>
+                            <td>Concentrado común</td>
+                            <td>{Truncado(recupLey.concComun)}</td>
                         </tr>
 
                         <tr>
-                            <th>Alimentación</th>
-                            <th>{Truncado(recupLey.alimentacion)}</th>
+                            <td>Alimentación</td>
+                            <td>{Truncado(recupLey.alimentacion)}</td>
                         </tr>
 
                         <tr>
-                            <th>Rechazo</th>
-                            <th>{Truncado(recupLey.rechazo)}</th>
+                            <td>Rechazo</td>
+                            <td>{Truncado(recupLey.rechazo)}</td>
                         </tr>
 
                         <tr>
-                            <th>Recuperación</th>
-                            <th>{Truncado(recupLey.recuperacion)}</th>
+                            <td>Recuperación</td>
+                            <td>{Truncado(recupLey.recuperacion)}</td>
                         </tr>
 
                     </tbody>
@@ -310,7 +310,8 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
     const view = () => {
         return (<>
             <h6 className={'text-center'}>Recuperación Masica</h6>
-            <table  className={'table'}>
+           
+            <table  className={'table'} style={{height:'90%',color:'white'}}>
                 
                 <thead>
                     
@@ -375,7 +376,7 @@ const ListaError = (listaVAlim, listaVRelave, listaVConcentrado) => {
     const view = () => {
         return (<>
             <h6 className={'text-center'}>Balance</h6>
-            <table className={'table'}>
+            <table className={'table  '} style={{height:'90%',color:'white'}}>
                 
                 <thead>
                     <tr>
@@ -386,21 +387,21 @@ const ListaError = (listaVAlim, listaVRelave, listaVConcentrado) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Masa Pulpa</th>
-                            <th>{Truncado(Error.masaPulpa.diferencia)}</th>
-                            <th>{Truncado(Error.masaPulpa.porcError)}</th>
+                            <td>Masa Pulpa</td>
+                            <td>{Truncado(Error.masaPulpa.diferencia)}</td>
+                            <td>{Truncado(Error.masaPulpa.porcError)}</td>
                         </tr>
 
                         <tr>
-                            <th>Masa Sólido</th>
-                            <th>{Truncado(Error.masaSolido.diferencia)}</th>
-                            <th>{Truncado(Error.masaSolido.porcError)}</th>
+                            <td>Masa Sólido</td>
+                            <td>{Truncado(Error.masaSolido.diferencia)}</td>
+                            <td>{Truncado(Error.masaSolido.porcError)}</td>
                         </tr>
 
                         <tr>
-                            <th>Masa Fino</th>
-                            <th>{Truncado(Error.masaFino.diferencia)}</th>
-                            <th>{Truncado(Error.masaFino.porcError)}</th>
+                            <td>Masa Fino</td>
+                            <td>{Truncado(Error.masaFino.diferencia)}</td>
+                            <td>{Truncado(Error.masaFino.porcError)}</td>
                         </tr>
 
 

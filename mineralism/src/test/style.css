@@ -1,23 +1,20 @@
 [cssTag~=titulo]{
     background-color: rgb(136, 168, 238);
     color: rgb(255, 255, 255);
-    padding: 25px;
     font-size: xx-large;
     font-weight: bold;
-    margin-left: -25%;
-    margin-right: -25%;
+  
 }
 
 [cssTag~=menu]{
     background-color: rgb(105, 162, 226);
-    margin-left: -25%;
-    margin-right: -25%;
+   
 }
 
 [cssTag~=item]{
     color: rgb(240, 240, 231);
     font-weight: bold;
-    padding-right: 50px;
+    
 }
 
 /*#navBar{
@@ -81,13 +78,19 @@ button::target-text{
     background-color: cadetblue;
 }
 
-table {color:rgb(255, 255, 255); font-family:Helvetica, Arial, sans-serif;
+.table {color:rgb(255, 255, 255); font-family:Helvetica, Arial, sans-serif;
 	width:640px; border-collapse:collapse;}
+
 td, th{border:1px solid rgb(63, 84, 173); }
+
 th{background:rgb(84, 97, 155);text-align:center;}
+
 td{text-align:center;}
+
 tr:nth-child(even){background:rgb(119, 146, 204);}
+
 tr:nth-child(odd){background:rgb(89, 131, 221);}
+
 tr:hover{background:rgb(58, 78, 167); color:#FFF;}
 
 [cssTag~=card-header]{

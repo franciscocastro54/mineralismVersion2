@@ -45,29 +45,29 @@ switch (num) {
 
 }
 
-  return <div className="accordion Barra" id="accordionExample">
+  return<div className="accordion Barra" id="accordionExample" >
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingOne">
-        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button csstag="item-menu" className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <strong>Diagramas</strong>
         </button>
       </h2>
       <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div className="accordion-body">
-          <a onClick={()=>load(1)}><p>Balance Polpaico</p></a>
-          <a onClick={()=>load(2)}><p>Circuito Completo</p></a>
+        <div className="accordion-body" csstag="menu-body">
+          <button className={'py-1'} csstag="bar-button" onClick={()=>load(1)} style={{color: 'white'}}>Balance Polpaico</button>
+          <button className={'py-1'} csstag="bar-button" onClick={()=>load(2)}style={{color: 'white'}}>Circuito Completo</button>
         </div>
       </div>
     </div>
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingTwo">
-        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button csstag="item-menu" className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <strong>Reportes</strong>
         </button>
       </h2>
       <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div className="accordion-body">
-        <a onClick={()=>load(3)}><p>Reportes</p></a>
+        <div className="accordion-body" csstag="menu-body">
+        <button className={'py-1'} csstag="bar-button" onClick={()=>load(3)}style={{color: 'white'}}>Reportes</button>
         </div>
       </div>
     </div>

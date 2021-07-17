@@ -1,23 +1,21 @@
 [cssTag~=titulo]{
     background-color: rgb(136, 168, 238);
     color: rgb(255, 255, 255);
-    padding: 25px;
+  
     font-size: xx-large;
     font-weight: bold;
-    margin-left: -25%;
-    margin-right: -25%;
+
 }
 
 [cssTag~=menu]{
     background-color: rgb(105, 162, 226);
-    margin-left: -25%;
-    margin-right: -25%;
+ 
 }
 
 [cssTag~=item]{
     color: rgb(240, 240, 231);
     font-weight: bold;
-    padding-right: 50px;
+  
 }
 
 /*#navBar{

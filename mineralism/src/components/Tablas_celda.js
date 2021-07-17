@@ -86,7 +86,7 @@ const Tabla_celda = ({ types = [] }) => {
     }}
 
     return <>
-        <div className={'container-xxl'}>
+        <div className={'container-xxl'} style={{padding:'0px'}}>
             <div className={'row'}>
                 <div className={'col border'}>
                     <nav>

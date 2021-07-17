@@ -18,9 +18,37 @@ return <div className={'container-xxl'}>
      <F_cargar_celda.Provider value={aux}>
           <F_Elements.Provider value={aux2}>
                <F_Balance.Provider value={aux3}>
+
+                    <div className={'row'}>
+                    <header className={'col'} style={{padding: '0px'}}>
+        <div class="container-xxl m-0 p-0" >
+            <div class="row" cssTag="titulo">
+                <div className={'col px-5'}>
+                    Mineralism
+                    
+                </div>
+
+                
+            </div>
+<div className={'row'}>
+            <ul class="nav justify-content-end" cssTag="menu">
+                <li class="nav-item" >
+                  <a class="nav-link active" aria-current="page" cssTag="item" href="#">Proyecto</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" cssTag="item" href="#">Configuración</a>
+                </li>
+                <li class="nav-item px-3">
+                  <a class="nav-link " cssTag="item" href="#" style={{color: '#CCCCCC'}}>Cerrar sesion</a>
+                </li>
+              </ul> 
+              </div>
+        </div>
+    </header>
+                         </div>
 <div className={'row'}>
    
-<div className={'col-2 h-100 d-inline-block sinpadd'}>
+<div className={'col-2'} style={{'padding': '0px'}}>
 <Barra/>
 </div>
 <div id={'Pantalla_central'}className={'col-10 sinpadd'}>

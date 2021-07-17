@@ -21,8 +21,8 @@ import vector, {
 const Generacion_Reportes = () => {
 
 
-    const style1 = { color: 'cornsilk', background: '#0053A4', border: '1px solid black' };
-    const style2 = { color: 'rgb(250, 246, 240)', background: 'rgb(61, 96, 161)', border: '1px solid black' }
+    const style1 = {'background': 'rgb(84, 97, 155)', 'text-align':'center'};
+    const style2 = { color: '#FFF', background: 'rgb(89, 131, 221)', border: '1px solid black' }
     const [circuitoCompleto, setCircuitoCompleto] = useContext(F_cargar_celda)
     const [circuitoCajaNegra, setCircuitoCajaNegra] = useContext(F_Balance)
     const [circuito, setCircuito] = useState(Circuito)
@@ -115,23 +115,23 @@ const Generacion_Reportes = () => {
         let Balance_MFinoP = document.getElementById('Balance_MFino%');
         let Balance_Msolido = document.getElementById('Balance_Msolido');
         let Balance_MsolidoP = document.getElementById('Balance_Msolido%');
-            Balance_Mpulpa.innerHTML = ("<td >" + Truncate(ListError.masaPulpa.diferencia) + "</td>");
-            Balance_MpulpaP.innerHTML =("<td >" +Truncate(ListError.masaPulpa.porcError) + "</td>");
-            Balance_MFino.innerHTML =("<td >" +Truncate(ListError.masaFino.diferencia) + "</td>");
-            Balance_MFinoP.innerHTML =("<td >" + Truncate(ListError.masaFino.porcError) + "</td>");
-            Balance_Msolido.innerHTML =("<td >" + Truncate(ListError.masaSolido.diferencia) + "</td>");
-            Balance_MsolidoP.innerHTML = ("<td >" + Truncate(ListError.masaSolido.porcError) + "</td>");
+        Balance_Mpulpa.innerHTML = ("<td >" + Truncate(ListError.masaPulpa.diferencia) + "</td>");
+        Balance_MpulpaP.innerHTML = ("<td >" + Truncate(ListError.masaPulpa.porcError) + "</td>");
+        Balance_MFino.innerHTML = ("<td >" + Truncate(ListError.masaFino.diferencia) + "</td>");
+        Balance_MFinoP.innerHTML = ("<td >" + Truncate(ListError.masaFino.porcError) + "</td>");
+        Balance_Msolido.innerHTML = ("<td >" + Truncate(ListError.masaSolido.diferencia) + "</td>");
+        Balance_MsolidoP.innerHTML = ("<td >" + Truncate(ListError.masaSolido.porcError) + "</td>");
     }
 
     return <div className={'container-xxl'}>
         <div className={'row'}>
 
             <div className={'col'}>
-                <div class="p-3 bg-primary text-white border border-primary  ">
-                    <div class="d-flex justify-content-center">
-                        <h2>Reportes</h2>
-                    </div>
-                    <div class="p-4 mb-3 row d-flex justify-content-center">
+                <div class="shadow-sm p-3 mb-5 bg-body rounded container">
+
+                    <h3>Reportes</h3>
+                    <div class={'p-3 container'} csstag="opciones" >
+
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onFocus={(event) => CambiarFuente(event)} />
                             <label class="form-check-label" for="flexRadioDefault1">
@@ -145,42 +145,47 @@ const Generacion_Reportes = () => {
                             </label>
                         </div>
                     </div>
-                    <div class="p-4 mb-3 row d-flex justify-content-center">
-                        <h4 class="col-6">
-                            <label for="tablaFlujos" class="fw-bold">Tabla de flujos</label>
-                        </h4>
-                        <div class="col-auto">
-                            <button id="tablaFlujos" class="btn btn-info fw-bold text-primary" onClick={() => (TableToExcel('tableFlujos', 'flujos', 'tablaFlujos.xls'))} value="Export to Excel">Generar reporte</button>
+                    <div class="p-3 container" csstag="contenido">
+                        <div className={'row'}>
+                            <div class='p-3 col-3'>
+                                
+                                 Tabla de flujos
+                                 </div>
+                            
+
+                                <div class="p-2 col-auto">
+                                    <button id="tablaFlujos" class="btn btn-primary" onClick={() => (TableToExcel('tableFlujos', 'flujos', 'tablaFlujos.xls'))} value="Export to Excel">Generar reporte</button>
+                                </div>
+                           
+                        </div>
+                        <div className={'row'}>
+                        <div class='p-3 col-3'>
+                                   Recuperación por leyes
+                            </div>
+                            <div class="p-2 col-auto">
+                                    <button id="tablaRecupLey" class="btn btn-primary" onClick={() => (TableToExcel('tableRecupLey', 'Recuperación por leyes', 'RecuperacionLey.xls'))} value="Export to Excel">Generar reporte</button>
+                                </div>
+                        
+                        </div>
+                        <div className={'row'}>
+                            <div class='p-3 col-3'>
+                              Recuperación másica
+                              </div>
+                                <div class="p-2 col-auto">
+                                    <button id="tablaRecupMasa" class="btn btn-primary" onClick={() => TableToExcel('tableRecupMasa', 'Recuperación masica', 'RecuperacionMasa.xls')} value="Export to Excel">Generar reporte</button>
+                                </div>
+                         
+                        </div>
+                        <div className={'row'}>
+                            <div class='p-3 col-3'>
+                               Balance de sólidos
+                               </div>
+                               <div class="p-2 col-auto">
+                                    <button id="tablaBalanceSolidos"class="btn btn-primary" onClick={() => TableToExcel('tableBalanceSol', 'BalanceDeSolidos', 'BalanceDeSolidos.xls')} value="Export to Excel">Generar reporte</button>
+                                </div>
+                         
                         </div>
                     </div>
-
-                    <div class="p-4 mb-3 row d-flex justify-content-center">
-                        <h4 class="col-6">
-                            <label for="tablaRecupLey" class="fw-bold">Recuperación por leyes</label>
-                        </h4>
-                        <div class="col-auto">
-                            <button id="tablaRecupLey" class="btn btn-info  fw-bold text-primary  " onClick={() => (TableToExcel('tableRecupLey', 'Recuperación por leyes', 'RecuperacionLey.xls'))} value="Export to Excel">Generar reporte</button>
-                        </div>
-                    </div>
-
-                    <div class="p-4 mb-3 row d-flex justify-content-center">
-                        <h4 class="col-6">
-                            <label for="tablaRecupMasa" class="fw-bold">Recuperación másica</label>
-                        </h4>
-                        <div class="col-auto">
-                            <button id="tablaRecupMasa" class="btn btn-info  fw-bold text-primary  " onClick={()=>TableToExcel('tableRecupMasa', 'Recuperación masica', 'RecuperacionMasa.xls')} value="Export to Excel">Generar reporte</button>
-                        </div>
-                    </div>
-
-                    <div class="p-4 mb-3 row d-flex justify-content-center">
-                        <h4 class="col-6">
-                            <label for="tablaBalanceSolidos" class="fw-bold">Balance de sólidos</label>
-                        </h4>
-                        <div class="col-auto">
-                            <button id="tablaBalanceSolidos" class="btn btn-info  fw-bold text-primary" onClick={()=>TableToExcel('tableBalanceSol', 'BalanceDeSolidos', 'BalanceDeSolidos.xls')} value="Export to Excel">Generar reporte</button>
-                        </div>
-                    </div>
-
 
                 </div>
 
@@ -252,8 +257,8 @@ const Generacion_Reportes = () => {
                             <caption>Recuperacion por ley</caption>
                             <thead>
                                 <tr>
-                                    <th class="ID" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>ID</th>
-                                    <th class="unidadLey" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>%</th>
+                                    <th class="ID" scope="col"  style={style1}>ID</th>
+                                    <th class="unidadLey" scope="col"  style={style1}>%</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -284,8 +289,8 @@ const Generacion_Reportes = () => {
 
 
                                 <tr>
-                                    <th class="ID" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black', }}>ID</th>
-                                    <th class="unidadMasa" scope="col" style={{ color: 'cornsilk', background: '#0053A4', border: '1px solid black' }}>T/h</th>
+                                    <th class="ID" scope="col"  style={style1}>ID</th>
+                                    <th class="unidadMasa" scope="col"  style={style1}>T/h</th>
 
                                 </tr>
                             </thead>
@@ -321,20 +326,20 @@ const Generacion_Reportes = () => {
                             <tbody>
                                 <tr>
                                     <th style={style2}>Masa Pulpa</th>
-                                    <th id={'Balance_Mpulpa'}style={style2}></th>
-                                    <th id={'Balance_Mpulpa%'}style={style2}></th>
+                                    <th id={'Balance_Mpulpa'} style={style2}></th>
+                                    <th id={'Balance_Mpulpa%'} style={style2}></th>
                                 </tr>
 
                                 <tr>
                                     <th style={style2}>Masa Sólido</th>
-                                    <th id={'Balance_Msolido'}style={style2}></th>
-                                    <th id={'Balance_Msolido%'}style={style2}></th>
+                                    <th id={'Balance_Msolido'} style={style2}></th>
+                                    <th id={'Balance_Msolido%'} style={style2}></th>
                                 </tr>
 
                                 <tr>
                                     <th style={style2}>Masa Fino</th>
-                                    <th id={'Balance_MFino'}style={style2}></th>
-                                    <th id={'Balance_MFino%'}style={style2}></th>
+                                    <th id={'Balance_MFino'} style={style2}></th>
+                                    <th id={'Balance_MFino%'} style={style2}></th>
                                 </tr>
 
 
