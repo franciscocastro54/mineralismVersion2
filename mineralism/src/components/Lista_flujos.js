@@ -67,7 +67,7 @@ sessionStorage.setItem('ListaBalance'+type,JSON.stringify(list))
         <div className={'container-xxl border '}  >
             <div className={'row'}>
                 <div className={'col-10'}>
-                    <h4 style={{color:'rgb(106, 135, 199)',fontWeight:'bold'}}>{Titulo}</h4></div>
+                    <h4 className={'p-2'} style={{color:'rgb(106, 135, 199)',fontWeight:'bold'}}>{Titulo}</h4></div>
                 <div className={'col-2'}>
                     <button data-bs-toggle={"modal"}
                     className={'btn'}    data-bs-target={"#Modal" + type} onClick={() => {/*addCelda()*/; openCelda() }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -75,7 +75,7 @@ sessionStorage.setItem('ListaBalance'+type,JSON.stringify(list))
                   </svg></button>
                 </div>
             </div>
-            <div className={'row'}>
+            <div className={'row p-3'}>
                 <div className={'col border px-0'} style={{minHeight: '15em',maxHeight:'15em',backgroundColor:'rgb(106, 135, 199)'}}>
                 <ul className={'list-group scrollspy-example'}>
                     {list.map(

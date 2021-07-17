@@ -110,12 +110,12 @@ const Tabla_celda = ({ types = [] }) => {
 
                 </div></div>
             <div className={'row'}>
-                <div className={'col-4 border'}>
+                <div className={'col-4 border p-4'}>
                     {listaRecupMasa.view()}
-                </div><div className={'col-4 border'}>
+                </div><div className={'col-4 border p-4'}>
                     {listaRecupLey.view()}
                 </div>
-                <div className={'col-4 border'}>
+                <div className={'col-4 border p-4'}>
                     {listaError.view()}
                 </div>
             </div>
