@@ -254,7 +254,7 @@ const ListaRecupLey = (listaVAlim, listaVRelave, listaVConcentrado) => {
     const view = () => {
 
         return (<>
- <h6 className={'text-center'}>Recuperación por ley</h6>
+ <h3 className={'text-center'}>Recuperación por ley</h3>
             <table className={'table'} style={{height:'90%',color:'white'}}>
               
                 <thead>
@@ -309,7 +309,7 @@ const ListaRecupMasa = (listaVAlim, listaVConcentrado) => {
 
     const view = () => {
         return (<>
-            <h6 className={'text-center'}>Recuperación Masica</h6>
+            <h3 className={'text-center'}>Recuperación Masica</h3>
            
             <table  className={'table'} style={{height:'90%',color:'white'}}>
                 
@@ -375,7 +375,7 @@ const ListaError = (listaVAlim, listaVRelave, listaVConcentrado) => {
 
     const view = () => {
         return (<>
-            <h6 className={'text-center'}>Balance</h6>
+            <h3 className={'text-center'}>Balance</h3>
             <table className={'table  '} style={{height:'90%',color:'white'}}>
                 
                 <thead>

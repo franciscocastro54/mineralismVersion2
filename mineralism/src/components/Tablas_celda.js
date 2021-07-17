@@ -120,8 +120,8 @@ const Tabla_celda = ({ types = [] }) => {
                 </div>
             </div>
             <div className={'row justify-content-center'}>
-                <div className={'col-2'}>
-                    <button className={'btn btn-primary'} onClick={cargar}>calcular</button>
+                <div className={'col-4 p-4'}>
+                    <button className={'col-10 btn btn-primary'} style={{fontWeight:'bold',fontSize:'30px', color:'white'}} onClick={cargar}>calcular</button>
                 </div>
             </div>
         </div>
