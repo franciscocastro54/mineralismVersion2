@@ -106,33 +106,33 @@ return<>
 <div className="modal fade" id={"Modal"+type} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Flujo</h5>
+      <div className="modal-header" style={{backgroundColor:'rgb(106, 135, 199)'}}>
+        <h4 className="modal-title" id="exampleModalLabel" style={{color:'white', backgroundColor:'rgb(106, 135, 199)'}}>Flujo</h4>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div className="modal-body">
-       <div className={'container-xxl'}>
-           <div className={'row'}>
-            <h6 className={'col-3'}>Nombre:</h6><input id={'inputNombre'+type}className={'col-7'} /><h6 className={'col-2'}></h6>
+      <div className="modal-body" style={{backgroundColor:'rgb(34, 122, 200)'}}>
+       <div className={'container-xxl'} >
+           <div className={'row p-2'}>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Nombre:</h6><input id={'inputNombre'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2'}></h6>
            </div>
-           <div className={'row'}>
-            <h6 className={'col-3'}>Densidad:<br/><code>(pulpa)</code></h6><input id={'inputdDensidad'+type}className={'col-7 '} /><h6 className={'col-2'}>(T/m3)</h6>
+           <div className={'row p-2'}>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Densidad:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input id={'inputdDensidad'+type}className={'col-7 '} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(T/m3)</h6>
            </div>
-           <div className={'row'}>
-            <h6 className={'col-3'}>Sólido:</h6><input id={'inputSolido'+type}className={'col-7'} /><h6 className={'col-2'}>(%)</h6>
+           <div className={'row p-1'}>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Sólido:</h6><input id={'inputSolido'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
            </div>
-           <div className={'row'}>
-            <h6 className={'col-3'}>Ley:</h6><input id={'inputLey'+type}className={'col-7'} /><h6 className={'col-2'}>(%)</h6>
+           <div className={'row p-2'}>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Ley:</h6><input id={'inputLey'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
            </div>
-           <div className={'row'}>
-            <h6 className={'col-3'}>Caudal:<br/><code>(pulpa)</code></h6><input id={'inputCaudal'+type}className={'col-7'} /><h6 className={'col-2'}>(m3/h)</h6>
+           <div className={'row p-2'}>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Caudal:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input id={'inputCaudal'+type}className={'col-7'} style={{height:'30px'}} /><h6 className={'col-2 p-2'} style={{color:'white'}}>(m3/h)</h6>
            </div>
        </div>
       </div>
-      <div className="modal-footer">
-      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={remove}>Eliminar</button>
+      <div className="modal-footer" style={{backgroundColor:'rgb(106, 135, 199)'}}>
+        <button type="button" className={'btn btn-danger'} data-bs-dismiss="modal" onClick={remove}>Eliminar</button>
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Guardar}>Save changes</button>
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Guardar}>Guardar cambios</button>
       </div>
     </div>
   </div>
