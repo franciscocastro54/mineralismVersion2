@@ -54,7 +54,7 @@ switch (num) {
       </h2>
       <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div className="accordion-body" csstag="menu-body">
-          <button className={'py-1'} csstag="bar-button" onClick={()=>load(1)} style={{color: 'white'}}>Balance Polpaico</button>
+          <button className={'py-1'} csstag="bar-button" onClick={()=>load(1)} style={{color: 'white'}}>Circuito unitario</button>
           <button className={'py-1'} csstag="bar-button" onClick={()=>load(2)}style={{color: 'white'}}>Circuito Completo</button>
         </div>
       </div>

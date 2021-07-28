@@ -135,7 +135,7 @@ const Generacion_Reportes = () => {
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onFocus={(event) => CambiarFuente(event)} />
                             <label class="form-check-label" for="flexRadioDefault1">
-                                Circuito Polpaico
+                                Circuito unitario
                             </label>
                         </div>
                         <div class="form-check">
