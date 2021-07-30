@@ -19,7 +19,7 @@ const Lista_Flujos_circuito = () => {
         
         
         })
-
+console.log(aux)
             return aux
         })
     

@@ -9,14 +9,20 @@ const Informacion_Celda = ({ Celda = Elementos }) => {
     const [circuito, setCircuito] = useContext(F_cargar_celda)
     const [elements, setElements] = useContext(F_Elements)
     const onChange = (event) => {
-        const onClick = () => {
+    
+        const onClick = (Celda) => {
+  
             Celda.focus = (Celda.focus) ? false : true
-        }
+            setCircuito((c) => [...c,Celda])
+            setCircuito((c) => {
+              c.pop()
+            return c
+            })
+          }
+          Celda.Nombre=event.target.value
         const value = event.target.value
-        console.log(event.target.value)
         Celda.Grafico.data.label = <><button className={'btn btn-info'} onClick={() => onClick(Celda)}><img src={icono_edit} /></button><strong>{value}</strong></>
         setCircuito((circuito) => circuito.map((celda) => (celda.id == Celda.id) ? Celda : celda))
-        console.log(elements)
     }/*
 const onChangetype=(event)=>{
     const value=event.target.value
