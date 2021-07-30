@@ -174,7 +174,8 @@ tipo='cola'
   useEffect(() => {setElements(e => e); console.log('refrescando grafico')}, [circuito.Grafico])
   const onDrop = (event) => {
     event.preventDefault();
-    const id = getId();
+    
+   
     const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
     const type = event.dataTransfer.getData('application/reactflow');
     const position = reactFlowInstance.project({
@@ -182,7 +183,6 @@ tipo='cola'
       y: event.clientY - reactFlowBounds.top,
     });
     let Nombre = ''
-  
     switch (type) {
       case 'Alimentacion':
         Nombre = 'Alimentación'
@@ -203,6 +203,8 @@ tipo='cola'
         Nombre = 'Error'
         break;
     }
+    if(Nombre!='Error'){
+    const id = getId();
     let newElement = Object.create(Elementos)
     newElement.id = id
     newElement.Nombre = Nombre
@@ -231,6 +233,7 @@ tipo='cola'
     setCircuito((c) => c.concat(newElement))
 
     setElements((es) => es.concat(newNode));
+  }
   };
   //<button onClick={cargarLista}>cargar</button>
  
