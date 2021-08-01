@@ -94,6 +94,13 @@ const Tabla_celda = ({ types = [] }) => {
 
     return <>
         <div className={'container-xxl'} style={{padding:'0px'}}>
+            
+            <div className={'row justify-content-center'}>
+                <div className={'col-4 p-4'}>
+                    <button className={'col-10 btn btn-primary'} style={{fontWeight:'bold',fontSize:'25px', color:'white'}} onClick={cargar}>calcular</button>
+                </div>
+            </div>
+
             <div className={'row'}>
                 <div className={'col border'}>
                     <nav>
@@ -126,11 +133,7 @@ const Tabla_celda = ({ types = [] }) => {
                     {listaError.view()}
                 </div>
             </div>
-            <div className={'row justify-content-center'}>
-                <div className={'col-4 p-4'}>
-                    <button className={'col-10 btn btn-primary'} style={{fontWeight:'bold',fontSize:'30px', color:'white'}} onClick={cargar}>calcular</button>
-                </div>
-            </div>
+            
         </div>
     </>
 }

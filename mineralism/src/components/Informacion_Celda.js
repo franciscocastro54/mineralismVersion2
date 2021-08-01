@@ -157,14 +157,14 @@ return c
                         <div className={'container'}>
                             <div className={'row'}>
                                 <div className={'col'}>
-                                    <h3 className={'text-center'}>Flujos</h3>
+                                    <h3 className={'text-center'}>Flujos de salida</h3>
                                 </div>
                                 <div className={'row'}>
                                     <div className={'col'}>
-                                        <ul className={'text-center'} style={{ listStyle: 'none' }}>
+                                        <ul className={'text-center '} style={{ listStyle: 'none' }}>
                                             {
                                                 Celda.Data.map(vector => (
-                                                    <li><button type="button" className={'btn btn-primary'}
+                                                    <li className='p-1'><button type="button" className={'btn btn-primary'}
                                                         onClick={() => loadCelda(vector)} data-bs-toggle="modal" data-bs-target={'#Input_List_C' + Celda.id}>{vector.data.nombre}</button></li>
                                                 )
                                                 )}
@@ -183,7 +183,7 @@ return c
 
                                         <div class="p-3 bg-light border border-primary col">
                                             <div class="p-2 d-flex justify-content-center">
-                                                <h3>Ingrese datos de Concentrado</h3>
+                                                <h3>Ingrese datos de flujo</h3>
                                             </div>
                                             <div class="mb-3 row">
 

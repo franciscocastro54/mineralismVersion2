@@ -21,7 +21,7 @@ const initialElements = [
 let id = 0;
 let id2 = 1;
 const getId = () => `dndnode_${id++}`;
-const getIdVector = () => `Flujo_${id2++}`;
+const getIdVector = () => `Flujo ${id2++}`;
 const Borrador3 = () => {
 
   const [circuito, setCircuito] = useContext(F_cargar_celda)
