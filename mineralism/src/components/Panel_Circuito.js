@@ -238,7 +238,7 @@ tipo='cola'
   //<button onClick={cargarLista}>cargar</button>
  
   return (
-    <div >
+    <div className='border border-secondary'>
       <ReactFlowProvider>
 
         <div ref={reactFlowWrapper} >

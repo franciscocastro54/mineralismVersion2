@@ -9,19 +9,21 @@ const Sistema_circuto=()=>{
 
 
 return <div className={'container-xxl'}>
+<Sidebar  />
 <div className={'row'}>
     
-    <div className={'col-9'}>
-    <Panel_Circuito/>
+
+
+    <div className={'col-8'}>
+        <Panel_Circuito/>
+    </div>
+    
+    <div className={'col-4'}>
+        <Lista_Flujos_circuito/>
+    </div>
+
 </div>
 
-
-
-<div className={'col-3'}>
-        <Sidebar />
-        </div>
-</div>
-<Lista_Flujos_circuito/>
 </div>
 
 
