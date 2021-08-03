@@ -39,13 +39,13 @@ const deletefocus=(celdaId)=>{
     })
 }
 
-    return <div className={'container'}>
+    return <div className={'container '}>
         <div className={'row'}>
             <div className={'col'}>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     {focus.map((celda) => (
-                        <li class="nav-item" role={celda.id}>
-                          <button class="nav-link" id={'home-tab' + celda.id} data-bs-toggle="tab" data-bs-target={"#home" + celda.id} type="button" role="tab" aria-controls="home" aria-selected="true">{celda.Nombre}<a onClick={(event)=>deletefocus(celda.id)}>X</a></button>
+                        <li class="nav-item p-1" role={celda.id}>
+                          <button class="nav-link" id={'home-tab' + celda.id} data-bs-toggle="tab" data-bs-target={"#home" + celda.id} type="button" role="tab" aria-controls="home" aria-selected="true">{celda.Nombre}<button type='button' className='btn btn-danger col-1' onClick={(event)=>deletefocus(celda.id)}>X </button></button>
                         </li>))}
                 </ul>
                 <div class="tab-content" id="myTabContent">
