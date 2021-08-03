@@ -113,19 +113,19 @@ return<>
       <div className="modal-body" style={{backgroundColor:'rgb(34, 122, 200)'}}>
        <div className={'container-xxl'} >
            <div className={'row p-2'}>
-            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Nombre:</h6><input id={'inputNombre'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2'}></h6>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Nombre:</h6><input placeholder='flujo 1' id={'inputNombre'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2'}></h6>
            </div>
            <div className={'row p-2'}>
-            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Densidad:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input id={'inputdDensidad'+type}className={'col-7 '} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(T/m3)</h6>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Densidad:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input placeholder='12.34' id={'inputdDensidad'+type}className={'col-7 '} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(T/m3)</h6>
            </div>
            <div className={'row p-1'}>
-            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Sólido:</h6><input id={'inputSolido'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Sólido:</h6><input placeholder='12.34' id={'inputSolido'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
            </div>
            <div className={'row p-2'}>
-            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Ley:</h6><input id={'inputLey'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Ley:</h6><input placeholder='12.34' id={'inputLey'+type}className={'col-7'} style={{height:'30px'}}/><h6 className={'col-2 p-2'} style={{color:'white'}}>(%)</h6>
            </div>
            <div className={'row p-2'}>
-            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Caudal:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input id={'inputCaudal'+type}className={'col-7'} style={{height:'30px'}} /><h6 className={'col-2 p-2'} style={{color:'white'}}>(m3/h)</h6>
+            <h6 className={'col-3 p-1'} style={{color:'white',fontWeight:'bold'}}>Caudal:<br/><code style={{color:'white'}} >(pulpa)</code></h6><input placeholder='12.34' id={'inputCaudal'+type}className={'col-7'} style={{height:'30px'}} /><h6 className={'col-2 p-2'} style={{color:'white'}}>(m3/h)</h6>
            </div>
        </div>
       </div>
